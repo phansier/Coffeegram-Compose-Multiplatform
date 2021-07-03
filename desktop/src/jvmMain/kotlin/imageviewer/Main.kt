@@ -1,4 +1,4 @@
-package example.imageviewer
+package imageviewer
 
 import androidx.compose.desktop.DesktopTheme
 import androidx.compose.material.MaterialTheme
