@@ -1,12 +1,12 @@
-package imageviewer
+package coffeegram
 
 import androidx.compose.desktop.DesktopTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.remember
-import example.imageviewer.utils.Application
 import getPreferredWindowSize
 import icAppRounded
 import ru.beryukhov.coffeegram.DefaultPreview
+import utils.Application
 
 fun main() = Application {
 

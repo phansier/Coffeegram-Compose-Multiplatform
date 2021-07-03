@@ -22,11 +22,11 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "imageviewer.MainKt"
+        mainClass = "coffeegram.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "ImageViewer"
+            packageName = "Coffeegram"
             packageVersion = "1.0.0"
             modules("jdk.crypto.ec")
 

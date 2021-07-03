@@ -1,4 +1,4 @@
-package example.imageviewer.utils
+package utils
 
 import androidx.compose.desktop.AppManager
 import androidx.compose.desktop.AppWindow
