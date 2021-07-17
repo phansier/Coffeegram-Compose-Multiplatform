@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    val jetbrains_compose_version by extra("0.5.0-build229")
+    val jetbrains_compose_version by extra("0.5.0-build245")
     val kotlin_version by extra("1.5.10")
     val coroutines_version by extra("1.5.0")
     val appcompat_version by extra("1.3.0")
@@ -12,7 +12,7 @@ buildscript {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("com.android.tools.build:gradle:4.2.2")
         classpath("org.jetbrains.compose:compose-gradle-plugin:$jetbrains_compose_version")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
 
