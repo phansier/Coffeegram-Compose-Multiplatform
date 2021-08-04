@@ -1,6 +1,6 @@
 # ![](images/icon.png) Coffeegram Multiplatform
 
-[![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-0.5.0--build270-yellow)](https://github.com/JetBrains/compose-jb)
+[![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-1.0.0--alpha2-yellow)](https://github.com/JetBrains/compose-jb)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.5.21-blue.svg)](https://kotlinlang.org)
 [![Android CI](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml/badge.svg)](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml)
 
