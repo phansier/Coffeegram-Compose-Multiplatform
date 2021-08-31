@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.beryukhov.coffeegram.data.Cappucino
+import ru.beryukhov.coffeegram.data.Cappuccino
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
 import ru.beryukhov.coffeegram.date_time.local_date.now
@@ -76,6 +76,6 @@ fun CoffeeTypeItem(
 @Composable
 fun preview() {
     CoffeeTypeItem(
-        now(), Cappucino, 5, DaysCoffeesStore()
+        now(), Cappuccino, 5, DaysCoffeesStore()
     )
 }

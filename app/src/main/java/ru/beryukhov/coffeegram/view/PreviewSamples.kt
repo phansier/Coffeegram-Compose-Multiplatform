@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ru.beryukhov.coffeegram.app_ui.typography
-import ru.beryukhov.coffeegram.data.Cappucino
+import ru.beryukhov.coffeegram.data.Cappuccino
 import ru.beryukhov.coffeegram.data.CoffeeType
 
 
@@ -26,7 +26,7 @@ import ru.beryukhov.coffeegram.data.CoffeeType
 @Composable
 private fun preview() {
     CoffeeTypeItemRaw(
-        Cappucino, 5
+        Cappuccino, 5
     )
 }
 

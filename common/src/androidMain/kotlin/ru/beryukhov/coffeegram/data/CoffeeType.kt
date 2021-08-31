@@ -8,6 +8,7 @@ actual abstract class CoffeeType constructor(
     @DrawableRes val iconId: Int = R.drawable.coffee
 )
 
-actual object Cappucino : CoffeeType("Cappuccino", R.drawable.cappucino)
+actual object Cappuccino : CoffeeType("Cappuccino", R.drawable.cappucino)
 actual object Latte : CoffeeType("Latte", R.drawable.latte)
+actual object Americano : CoffeeType("Americano", R.drawable.coffee)
 actual object CommonCoffee : CoffeeType("CommonCoffee")

@@ -3,6 +3,7 @@ package ru.beryukhov.coffeegram.date_time.local_date
 actual typealias LocalDate = org.threeten.bp.LocalDate
 
 actual fun now() = LocalDate.now()
+actual fun parse(text: String): LocalDate = LocalDate.parse(text)
 actual fun of(
     year: Int,
     month: Int,

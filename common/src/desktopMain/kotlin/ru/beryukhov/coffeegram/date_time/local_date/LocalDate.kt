@@ -5,6 +5,8 @@ import ru.beryukhov.coffeegram.date_time.year_month.DayOfWeek
 actual typealias LocalDate = java.time.LocalDate
 
 actual fun now() = LocalDate.now()
+
+actual fun parse(text: String): LocalDate = LocalDate.parse(text)
 actual fun of(year: Int, month: Int, dayOfMonth: Int) = LocalDate.of(year, month, dayOfMonth)
 
 actual val LocalDate.year: Int

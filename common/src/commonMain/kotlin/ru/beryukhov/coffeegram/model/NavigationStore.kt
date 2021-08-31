@@ -11,9 +11,11 @@ import ru.beryukhov.coffeegram.date_time.year_month.now
 import ru.beryukhov.coffeegram.date_time.year_month.of
 import ru.beryukhov.coffeegram.date_time.year_month.plusMonths
 import ru.beryukhov.coffeegram.date_time.year_month.year
+import ru.beryukhov.coffeegram.store_lib.InMemoryStore
+import ru.beryukhov.coffeegram.store_lib.Store
 
 
-class NavigationStore : Store<NavigationIntent, NavigationState>(
+class NavigationStore : InMemoryStore<NavigationIntent, NavigationState>(
         initialState = NavigationState.TablePage(now())
     ) {
 

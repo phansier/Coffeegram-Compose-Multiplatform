@@ -15,6 +15,13 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                implementation(project(":repository"))
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
             }
         }
         named("androidMain") {
@@ -22,6 +29,12 @@ kotlin {
                 api("androidx.appcompat:appcompat:${rootProject.extra["appcompat_version"]}")
                 api("androidx.core:core-ktx:${rootProject.extra["core_ktx_version"]}")
                 implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+            }
+        }
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation("junit:junit:4.13.2")
             }
         }
         named("desktopMain") {
