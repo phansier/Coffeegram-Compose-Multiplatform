@@ -23,7 +23,7 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.beryukhov.coffeegram.app_ui.CoffeegramTheme
-import ru.beryukhov.coffeegram.data.Cappucino
+import ru.beryukhov.coffeegram.data.Cappuccino
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.date_time.dateFormatSymbolsShortWeekdays
 import ru.beryukhov.coffeegram.date_time.local_date.dayOfWeek
@@ -208,7 +208,7 @@ fun TablePreview() {
 fun SampleTable(modifier: Modifier = Modifier) =
     MonthTable(
         of(2020, 7),
-        mapOf(2 to Cappucino),
+        mapOf(2 to Cappuccino),
         modifier = modifier,
         navigationStore = NavigationStore()
     )

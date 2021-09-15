@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(rootProject.extra["compilesdk_version"].toString().toInt())
 
     defaultConfig {
         applicationId = "ru.beryukhov.coffeegram"

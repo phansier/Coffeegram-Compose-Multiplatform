@@ -3,9 +3,13 @@ package ru.beryukhov.coffeegram.model
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.data.DayCoffee
 import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
+import ru.beryukhov.coffeegram.repository.CoffeeStorage
+import ru.beryukhov.coffeegram.store_lib.PersistentStore
+import ru.beryukhov.coffeegram.store_lib.Store
 
-class DaysCoffeesStore : Store<DaysCoffeesIntent, DaysCoffeesState>(
-    initialState = DaysCoffeesState(mapOf())
+class DaysCoffeesStore : PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
+    initialState = DaysCoffeesState(),
+    storage = CoffeeStorage()
 ) {
 
     override fun handleIntent(intent: DaysCoffeesIntent): DaysCoffeesState {
@@ -28,22 +32,37 @@ class DaysCoffeesStore : Store<DaysCoffeesIntent, DaysCoffeesState>(
     }
 
     private fun getCoffeeOrNull(localDate: LocalDate, coffeeType: CoffeeType): Int? {
-        return stateFlow.value.coffees[localDate]?.coffeeCountMap?.get(coffeeType)
+        return state.value.coffees[localDate]?.coffeeCountMap?.get(coffeeType)
     }
 
     private fun putCoffeeCount(localDate: LocalDate, coffeeType: CoffeeType, count: Int): DaysCoffeesState {
-        return stateFlow.value.copy(
-            coffees = stateFlow.value.coffees.toMutableMap().also{
-                if (it[localDate]==null){
-                    it[localDate] = DayCoffee()
-                }
-                val countMap: MutableMap<CoffeeType, Int> = it[localDate]!!.coffeeCountMap.toMutableMap()
-                countMap[coffeeType] = count
-                it[localDate] = DayCoffee(countMap)
-            }
+        return DaysCoffeesState(
+            changeCoffeeCount(
+                oldValue = state.value.coffees,
+                localDate, coffeeType, count
+            )
         )
     }
 
+}
+
+//@VisibleForTesting
+internal fun changeCoffeeCount(
+    oldValue: Map<LocalDate, DayCoffee>, localDate: LocalDate,
+    coffeeType: CoffeeType,
+    count: Int
+): Map<LocalDate, DayCoffee> {
+    val newValue: MutableMap<LocalDate, DayCoffee> = oldValue.toMutableMap()
+    newValue.also {
+        val countMap: MutableMap<CoffeeType, Int> = if (it[localDate] == null) {
+            mutableMapOf()
+        } else {
+            it[localDate]!!.coffeeCountMap.toMutableMap()
+        }
+        countMap[coffeeType] = count
+        it[localDate] = DayCoffee(countMap)
+    }
+    return newValue
 }
 
 sealed class DaysCoffeesIntent {
@@ -51,4 +70,4 @@ sealed class DaysCoffeesIntent {
     data class MinusCoffee(val localDate: LocalDate, val coffeeType: CoffeeType) : DaysCoffeesIntent()
 }
 
-data class DaysCoffeesState(val coffees: Map<LocalDate, DayCoffee>)
+data class DaysCoffeesState(val coffees: Map<LocalDate, DayCoffee> = mapOf())

@@ -1,16 +1,18 @@
 package ru.beryukhov.coffeegram.data
 
-data class DayCoffee(val coffeeCountMap: Map<CoffeeType, Int> = mapOf(Cappucino to 0, Latte to 0)){
-    fun getCoffeeType():  CoffeeType {
+data class DayCoffee(val coffeeCountMap: Map<CoffeeType, Int> = mapOf()){
+    fun getCoffeeType():  CoffeeType? {
         return getIconType(coffeeCountMap)
     }
 }
 
-fun getIconType(coffeeCountMap: Map<CoffeeType, Int>): CoffeeType {
-    //todo normal logic
+fun getIconType(coffeeCountMap: Map<CoffeeType, Int>): CoffeeType? {
+    val t = coffeeCountMap.filterValues { it>0 }
     return when {
-        coffeeCountMap[Cappucino]==0 && coffeeCountMap[Latte]!=0 -> Latte
-        coffeeCountMap[Cappucino]!=0 && coffeeCountMap[Latte]==0 -> Cappucino
+        t.isEmpty() -> null
+        t.size == 1 -> {
+            t.keys.first()
+        }
         else -> CommonCoffee
     }
 }
