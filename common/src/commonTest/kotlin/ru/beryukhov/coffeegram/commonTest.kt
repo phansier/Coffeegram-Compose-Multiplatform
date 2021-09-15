@@ -9,6 +9,7 @@ import ru.beryukhov.coffeegram.pages.withEmpty
 import repository.model.DbDayCoffee
 import ru.beryukhov.coffeegram.data.Americano
 import ru.beryukhov.coffeegram.data.Cappuccino
+import ru.beryukhov.coffeegram.data.CommonCoffee
 import ru.beryukhov.coffeegram.data.Latte
 import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
 import ru.beryukhov.coffeegram.date_time.local_date.of
@@ -143,9 +144,10 @@ class DataMappingTest {
         )
         val actual = map.withEmpty()
         val expected = listOf(
-            Cappuccino to 2,
             Latte to 3,
-            Americano to 0
+            Cappuccino to 2,
+            Americano to 0,
+            CommonCoffee to 0
         )
         assertEquals(expected, actual)
     }
