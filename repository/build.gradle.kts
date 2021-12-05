@@ -4,7 +4,6 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    //id("io.realm.kotlin")
     id("com.squareup.sqldelight")
 }
 
@@ -16,6 +15,8 @@ sqldelight {
 }
 
 version = "1.0"
+
+val sqldelight_version ="1.5.1"
 
 kotlin {
     android()
@@ -44,8 +45,8 @@ kotlin {
                 //implementation("io.realm.kotlin:library:${rootProject.extra["realm_version"]}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
 
-                implementation("com.squareup.sqldelight:runtime:${rootProject.extra["sqldelight_version"]}")
-                implementation("com.squareup.sqldelight:coroutines-extensions:${rootProject.extra["sqldelight_version"]}")
+                implementation("com.squareup.sqldelight:runtime:$sqldelight_version")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight_version")
             }
         }
         val commonTest by getting {
@@ -56,8 +57,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:${rootProject.extra["sqldelight_version"]}")
-                implementation("com.squareup.sqldelight:coroutines-extensions:${rootProject.extra["sqldelight_version"]}")
+                implementation("com.squareup.sqldelight:android-driver:$sqldelight_version")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight_version")
             }
         }
         val androidTest by getting {
@@ -68,14 +69,14 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:${rootProject.extra["sqldelight_version"]}")
+                implementation("com.squareup.sqldelight:native-driver:$sqldelight_version")
             }
         }
         val iosTest by getting
 
         val jvmMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:sqlite-driver:${rootProject.extra["sqldelight_version"]}")
+                implementation("com.squareup.sqldelight:sqlite-driver:$sqldelight_version")
             }
         }
 
@@ -83,7 +84,8 @@ kotlin {
 }
 
 android {
-    compileSdk = 30
+    compileSdkVersion(libs.versions.compileSdk.get().toInt())
+
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 21

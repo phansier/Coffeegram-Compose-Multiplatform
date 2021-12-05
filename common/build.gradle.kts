@@ -15,7 +15,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                implementation(project(":repository"))
+                implementation(projects.repository)
             }
         }
         val commonTest by getting {
@@ -26,8 +26,8 @@ kotlin {
         }
         named("androidMain") {
             dependencies {
-                api("androidx.appcompat:appcompat:${rootProject.extra["appcompat_version"]}")
-                api("androidx.core:core-ktx:${rootProject.extra["core_ktx_version"]}")
+                api(libs.androidx.appcompat)
+                api(libs.androidx.coreKtx)
                 implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
             }
         }
@@ -46,13 +46,13 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(libs.versions.compileSdk.get().toInt())
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        minSdkVersion(libs.versions.minSdk.get().toInt())
+        targetSdkVersion(libs.versions.targetSdk.get().toInt())
+        //versionCode = 1
+        //versionName = "1.0"
     }
 
     compileOptions {

@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(rootProject.extra["compilesdk_version"].toString().toInt())
+    compileSdkVersion(libs.versions.compileSdk.get().toInt())
 
     defaultConfig {
         applicationId = "ru.beryukhov.coffeegram"
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdkVersion(libs.versions.minSdk.get().toInt())
+        targetSdkVersion(libs.versions.targetSdk.get().toInt())
         versionCode = 1
         versionName = "1.0"
 
@@ -32,17 +32,16 @@ android {
 
 dependencies {
 
-    implementation(project(":common"))
+    implementation(projects.common)
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.core:core-ktx:${rootProject.extra["core_ktx_version"]}")
-    implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat_version"]}")
-    implementation("com.google.android.material:material:1.4.0")
+    implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
-    implementation("org.jetbrains.compose.ui:ui:${rootProject.extra["jetbrains_compose_version"]}")
-    implementation("org.jetbrains.compose.material:material:${rootProject.extra["jetbrains_compose_version"]}")
+    implementation(libs.jetbrains.compose.ui)
+    implementation(libs.jetbrains.compose.material)
 
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.activity:activity-compose:1.3.1")//1.4.0
 
     testImplementation("junit:junit:4.13.2")
 

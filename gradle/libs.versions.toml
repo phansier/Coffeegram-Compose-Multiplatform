@@ -1,0 +1,29 @@
+[versions]
+kotlin = "1.5.31"
+agp = "7.0.0"
+jetbrainsCompose = "1.0.0"
+sqldelight = "1.5.3"
+
+coreKtx = "1.7.0"
+appcompat = "1.4.0"
+material = "1.4.0"
+
+
+compileSdk = "31"
+minSdk = "21"
+targetSdk = "30"
+
+[libraries]
+androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+composeGradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrainsCompose" }
+kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+sqldelightGradle = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+
+jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrainsCompose" }
+jetbrains-compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "jetbrainsCompose" }
+
+
+androidx-coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+
+material = { module = "com.google.android.material:material", version.ref = "material"}
