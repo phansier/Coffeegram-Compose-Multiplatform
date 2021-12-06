@@ -4,18 +4,18 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${rootProject.extra["jetbrains_compose_version"]}"
+fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${libs.versions.jetbrainsCompose}"
 
 kotlin {
     android()
     jvm("desktop")
     sourceSets {
-        named("commonMain") {
+        val commonMain by getting {
             dependencies {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
-                implementation(project(":repository"))
+                implementation(projects.repository)
             }
         }
         val commonTest by getting {
@@ -24,20 +24,20 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        named("androidMain") {
+        val androidMain by getting {
             dependencies {
-                api("androidx.appcompat:appcompat:${rootProject.extra["appcompat_version"]}")
-                api("androidx.core:core-ktx:${rootProject.extra["core_ktx_version"]}")
-                implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+                api(libs.androidx.appcompat)
+                api(libs.androidx.coreKtx)
+                implementation(libs.threetenabp)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.junit)
             }
         }
-        named("desktopMain") {
+        val desktopMain by getting {
             dependencies {
                 api(compose.desktop.common)
             }
@@ -46,13 +46,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 
     compileOptions {

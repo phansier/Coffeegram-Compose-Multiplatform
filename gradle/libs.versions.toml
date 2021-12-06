@@ -1,0 +1,45 @@
+[versions]
+kotlin = "1.5.31"
+agp = "7.0.0"
+jetbrainsCompose = "1.0.0"
+sqldelight = "1.5.3"
+coroutines = "1.5.2"
+
+coreKtx = "1.7.0"
+appcompat = "1.4.0"
+material = "1.4.0"
+activity = "1.4.0"
+
+
+compileSdk = "31"
+minSdk = "21"
+targetSdk = "30"
+
+[libraries]
+androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+composeGradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrainsCompose" }
+kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+sqldelightGradle = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+
+jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrainsCompose" }
+jetbrains-compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "jetbrainsCompose" }
+
+
+androidx-coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+threetenabp = "com.jakewharton.threetenabp:threetenabp:1.3.1"
+
+junit = "junit:junit:4.13.2"
+
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+
+sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
+sqldelight-sqliteDriver = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }

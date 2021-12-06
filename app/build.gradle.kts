@@ -5,16 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(rootProject.extra["compilesdk_version"].toString().toInt())
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "ru.beryukhov.coffeegram"
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,27 +30,21 @@ android {
 
 dependencies {
 
-    implementation(project(":common"))
+    implementation(projects.common)
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.core:core-ktx:${rootProject.extra["core_ktx_version"]}")
-    implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat_version"]}")
-    implementation("com.google.android.material:material:1.4.0")
+    implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
-    implementation("org.jetbrains.compose.ui:ui:${rootProject.extra["jetbrains_compose_version"]}")
-    implementation("org.jetbrains.compose.material:material:${rootProject.extra["jetbrains_compose_version"]}")
+    implementation(libs.jetbrains.compose.ui)
+    implementation(libs.jetbrains.compose.material)
 
-    implementation("androidx.activity:activity-compose:1.3.1")
-
-    testImplementation("junit:junit:4.13.2")
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(libs.androidx.activity.compose)
 
 
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+    implementation(libs.threetenabp)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.extra["coroutines_version"]}")
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
 
 }

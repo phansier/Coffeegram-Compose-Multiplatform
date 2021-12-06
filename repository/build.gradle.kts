@@ -4,7 +4,6 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    //id("io.realm.kotlin")
     id("com.squareup.sqldelight")
 }
 
@@ -22,30 +21,26 @@ kotlin {
 
     jvm()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iosTarget("ios") {}
+    iosX64()
+    iosArm64()
 
     cocoapods {
         summary = "Repository for Coffegram"
         homepage = "https://github.com/phansier/Coffeegram"
         ios.deploymentTarget = "14.1"
-        frameworkName = "repository"
-        // set path to your ios project podfile, e.g. podfile = project.file("../iosApp/Podfile")
+        //podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "repository"
+        }
     }
     
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //implementation("io.realm.kotlin:library:${rootProject.extra["realm_version"]}")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
+                implementation(libs.coroutines.core)
 
-                implementation("com.squareup.sqldelight:runtime:${rootProject.extra["sqldelight_version"]}")
-                implementation("com.squareup.sqldelight:coroutines-extensions:${rootProject.extra["sqldelight_version"]}")
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutinesExt)
             }
         }
         val commonTest by getting {
@@ -56,26 +51,26 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:${rootProject.extra["sqldelight_version"]}")
-                implementation("com.squareup.sqldelight:coroutines-extensions:${rootProject.extra["sqldelight_version"]}")
+                implementation(libs.sqldelight.androidDriver)
+                implementation(libs.sqldelight.coroutinesExt)
             }
         }
-        val androidTest by getting {
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
             dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.sqldelight.nativeDriver)
             }
         }
-        val iosMain by getting {
-            dependencies {
-                implementation("com.squareup.sqldelight:native-driver:${rootProject.extra["sqldelight_version"]}")
-            }
-        }
-        val iosTest by getting
 
         val jvmMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:sqlite-driver:${rootProject.extra["sqldelight_version"]}")
+                implementation(libs.sqldelight.sqliteDriver)
             }
         }
 
@@ -83,7 +78,8 @@ kotlin {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = libs.versions.compileSdk.get().toInt()
+
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 21
