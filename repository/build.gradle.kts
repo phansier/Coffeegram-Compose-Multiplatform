@@ -42,7 +42,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //implementation("io.realm.kotlin:library:${rootProject.extra["realm_version"]}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
 
                 implementation("com.squareup.sqldelight:runtime:$sqldelight_version")
@@ -61,18 +60,11 @@ kotlin {
                 implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight_version")
             }
         }
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-            }
-        }
         val iosMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:$sqldelight_version")
             }
         }
-        val iosTest by getting
 
         val jvmMain by getting {
             dependencies {
@@ -84,7 +76,7 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(libs.versions.compileSdk.get().toInt())
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {

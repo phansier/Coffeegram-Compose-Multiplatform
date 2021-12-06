@@ -5,16 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(libs.versions.compileSdk.get().toInt())
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "ru.beryukhov.coffeegram"
-        minSdkVersion(libs.versions.minSdk.get().toInt())
-        targetSdkVersion(libs.versions.targetSdk.get().toInt())
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,15 +39,10 @@ dependencies {
     implementation(libs.jetbrains.compose.ui)
     implementation(libs.jetbrains.compose.material)
 
-    implementation("androidx.activity:activity-compose:1.3.1")//1.4.0
-
-    testImplementation("junit:junit:4.13.2")
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(libs.androidx.activity.compose)
 
 
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+    implementation(libs.threetenabp)
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.extra["coroutines_version"]}")
