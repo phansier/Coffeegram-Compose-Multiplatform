@@ -44,7 +44,7 @@ dependencies {
 
     implementation(libs.threetenabp)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.extra["coroutines_version"]}")
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
 
 }

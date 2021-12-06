@@ -16,36 +16,31 @@ sqldelight {
 
 version = "1.0"
 
-val sqldelight_version ="1.5.1"
-
 kotlin {
     android()
 
     jvm()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iosTarget("ios") {}
+    iosX64()
+    iosArm64()
 
     cocoapods {
         summary = "Repository for Coffegram"
         homepage = "https://github.com/phansier/Coffeegram"
         ios.deploymentTarget = "14.1"
-        frameworkName = "repository"
-        // set path to your ios project podfile, e.g. podfile = project.file("../iosApp/Podfile")
+        //podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "repository"
+        }
     }
     
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["coroutines_version"]}")
+                implementation(libs.coroutines.core)
 
-                implementation("com.squareup.sqldelight:runtime:$sqldelight_version")
-                implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight_version")
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutinesExt)
             }
         }
         val commonTest by getting {
@@ -56,19 +51,26 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:$sqldelight_version")
-                implementation("com.squareup.sqldelight:coroutines-extensions:$sqldelight_version")
+                implementation(libs.sqldelight.androidDriver)
+                implementation(libs.sqldelight.coroutinesExt)
             }
         }
-        val iosMain by getting {
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:$sqldelight_version")
+                implementation(libs.sqldelight.nativeDriver)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:sqlite-driver:$sqldelight_version")
+                implementation(libs.sqldelight.sqliteDriver)
             }
         }
 

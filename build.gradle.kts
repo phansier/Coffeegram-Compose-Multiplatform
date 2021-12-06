@@ -1,7 +1,4 @@
 buildscript {
-    val coroutines_version by extra("1.5.2")
-
-
     repositories {
         mavenCentral()
         google()

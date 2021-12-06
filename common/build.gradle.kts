@@ -4,13 +4,13 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${rootProject.extra["jetbrains_compose_version"]}"
+fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${libs.versions.jetbrainsCompose}"
 
 kotlin {
     android()
     jvm("desktop")
     sourceSets {
-        named("commonMain") {
+        val commonMain by getting {
             dependencies {
                 api(compose.runtime)
                 api(compose.foundation)
@@ -24,14 +24,20 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        named("androidMain") {
+        val androidMain by getting {
             dependencies {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.coreKtx)
                 implementation(libs.threetenabp)
             }
         }
-        named("desktopMain") {
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation(libs.junit)
+            }
+        }
+        val desktopMain by getting {
             dependencies {
                 api(compose.desktop.common)
             }
