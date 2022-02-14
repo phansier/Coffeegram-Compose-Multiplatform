@@ -9,31 +9,31 @@ import kotlinx.coroutines.launch
 
 abstract class PersistentStore<Intent : Any, State : Any>(initialState: State, private val storage: Storage<State>):
     Store<Intent, State> {
-    private val _intentChannel = MutableSharedFlow<Intent>()
-    private val _state = MutableStateFlow(initialState)
+    private val intentFlow = MutableSharedFlow<Intent>()
+    private val stateFlow = MutableStateFlow(initialState)
 
     override val state: StateFlow<State>
-        get() = _state
+        get() = stateFlow
 
     override fun newIntent(intent: Intent) {
         GlobalScope.launch {
-            _intentChannel.emit(intent)
+            intentFlow.emit(intent)
         }
     }
 
     init {
         GlobalScope.launch {
             getStoredState()?.let {
-                _state.value = it
+                stateFlow.value = it
             }
             handleIntents()
         }
     }
 
     private suspend fun handleIntents() {
-        _intentChannel.collect {
-            _state.value = handleIntent(it)
-            storage.saveState(_state.value)
+        intentFlow.collect {
+            stateFlow.value = handleIntent(it)
+            storage.saveState(stateFlow.value)
         }
     }
 
