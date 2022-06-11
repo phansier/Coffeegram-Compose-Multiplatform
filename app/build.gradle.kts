@@ -8,7 +8,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "ru.beryukhov.coffeegram"
+        applicationId = "ru.beryukhov.coffeegram.desktop"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
