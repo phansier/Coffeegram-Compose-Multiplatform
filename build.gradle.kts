@@ -2,6 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     dependencies {
         classpath(libs.androidGradle)
@@ -16,6 +17,7 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
