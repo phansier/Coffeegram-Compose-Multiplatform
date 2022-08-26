@@ -78,8 +78,8 @@ kotlin {
 compose.experimental {
     //web.application {}
     uikit.application {
-        bundleIdPrefix = "org.jetbrains"
-        projectName = "Chat"
+        bundleIdPrefix = "ru.beryukhov"
+        projectName = "Coffeegram"
         deployConfigurations {
             simulator("IPhone8") {
                 //Usage: ./gradlew iosDeployIPhone8Debug
