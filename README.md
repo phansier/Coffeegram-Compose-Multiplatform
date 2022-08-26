@@ -1,15 +1,18 @@
 # ![](images/icon.png) Coffeegram Multiplatform
 
-[![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-1.2.0--alpha01--dev709-yellow)](https://github.com/JetBrains/compose-jb)
+[![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-1.2.0--alpha01--dev725-yellow)](https://github.com/JetBrains/compose-jb)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.6.21-blue.svg)](https://kotlinlang.org)
 [![Android CI](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml/badge.svg)](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-77-blue)](https://jetc.dev/issues/077.html)
 
 
-Android + Desktop multiplatform app using [Jetbrains Compose](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
+Android + Desktop + iOS (!!!) multiplatform app using [Jetbrains Compose](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
+
+<img src="images/ios.png" alt="drawing" width="300"/>
 
 ![](images/desktop.png)
 
+iOS currently not works with image assets - therefore icons were replaced with color boxes
 This project evolved from [Coffeegram Android](https://github.com/phansier/Coffeegram) (with Andorid Jetpack Compose) repository.
 
 ## Run on Desktop jvm
