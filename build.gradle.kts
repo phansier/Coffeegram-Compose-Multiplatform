@@ -1,3 +1,7 @@
+plugins {
+    id("convention.detekt")
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -19,8 +23,4 @@ allprojects {
         google()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-}
-
-task<Delete>("clean") {
-    delete(rootProject.buildDir)
 }

@@ -1,7 +1,7 @@
 path := ./
 
-# detekt:
-#     $(path)gradlew detektAll
+detekt:
+	$(path)gradlew detektAll
 
 buildAndroid:
 	./gradlew :app:assemble --no-configuration-cache
@@ -9,4 +9,4 @@ buildAndroid:
 testCommon:
 	./gradlew :common:testDebugUnitTest --no-configuration-cache
 
-localCheck: buildAndroid
+localCheck: detekt buildAndroid

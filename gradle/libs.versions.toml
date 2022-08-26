@@ -4,6 +4,8 @@ agp = "7.0.4" # https://developer.android.com/studio/releases/gradle-plugin
 jetbrainsCompose = "1.2.0-alpha01-dev725" # https://github.com/JetBrains/compose-jb
 sqldelight = "1.5.3" # https://github.com/cashapp/sqldelight/releases
 coroutines = "1.6.3" # https://github.com/Kotlin/kotlinx.coroutines
+detekt = "1.21.0" # https://github.com/detekt/detekt
+
 
 coreKtx = "1.8.0" # https://developer.android.com/jetpack/androidx/releases/core
 appcompat = "1.4.2" # https://developer.android.com/jetpack/androidx/releases/appcompat
@@ -20,6 +22,9 @@ androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp"
 composeGradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrainsCompose" }
 kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 sqldelightGradle = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
+detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
 jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrainsCompose" }
 jetbrains-compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "jetbrainsCompose" }
