@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.compose.experimental.dsl.IOSDevices
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     id("com.android.library")
@@ -33,6 +34,7 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 implementation(projects.repository)
+                implementation(libs.kotlinx.datetime)
             }
         }
         val commonTest by getting {
@@ -45,7 +47,6 @@ kotlin {
             dependencies {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.coreKtx)
-                implementation(libs.threetenabp)
             }
         }
         val androidTest by getting {
@@ -108,6 +109,8 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -116,6 +119,37 @@ android {
         named("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
             res.srcDirs("src/androidMain/res")
+        }
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring(libs.kotlinx.datetime)
+}
+
+compose.desktop {
+    application {
+        mainClass = "Main_desktopKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "Coffeegram"
+            packageVersion = "1.0.0"
+            modules("jdk.crypto.ec")
+
+            val iconsRoot = project.file("../common/src/desktopMain/resources/images")
+            macOS {
+                iconFile.set(iconsRoot.resolve("icon-mac.icns"))
+            }
+            windows {
+                iconFile.set(iconsRoot.resolve("icon-windows.ico"))
+                menuGroup = "Compose Examples"
+                // see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
+                upgradeUuid = "18159995-d967-4CD2-8885-77BFA97CFA9F"
+            }
+            linux {
+                iconFile.set(iconsRoot.resolve("icon-linux.png"))
+            }
         }
     }
 }

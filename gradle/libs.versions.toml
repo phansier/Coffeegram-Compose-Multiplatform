@@ -29,9 +29,11 @@ androidx-coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" 
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 
+kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0" # https://github.com/Kotlin/kotlinx-datetime
+
+
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
-threetenabp = "com.jakewharton.threetenabp:threetenabp:1.4.0" # https://mvnrepository.com/artifact/com.jakewharton.threetenabp/threetenabp/1.4.0
 
 junit = "junit:junit:4.13.2"
 
