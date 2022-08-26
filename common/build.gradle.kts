@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.compose.experimental.dsl.IOSDevices
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -9,6 +12,20 @@ fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${libs.ve
 kotlin {
     android()
     jvm("desktop")
+
+    iosX64("uikitX64") {
+        binaries {
+            executable() {
+                entryPoint = "main"
+                freeCompilerArgs += listOf(
+                    "-linker-option", "-framework", "-linker-option", "Metal",
+                    "-linker-option", "-framework", "-linker-option", "CoreText",
+                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                )
+            }
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -42,7 +59,44 @@ kotlin {
                 api(compose.desktop.common)
             }
         }
+
+        val nativeMain by creating {
+            dependsOn(commonMain)
+        }
+        val uikitMain by creating {
+            dependsOn(nativeMain)
+        }
+        val uikitX64Main by getting {
+            dependsOn(uikitMain)
+        }
     }
+}
+
+compose.experimental {
+    //web.application {}
+    uikit.application {
+        bundleIdPrefix = "org.jetbrains"
+        projectName = "Chat"
+        deployConfigurations {
+            simulator("IPhone8") {
+                //Usage: ./gradlew iosDeployIPhone8Debug
+                device = IOSDevices.IPHONE_8
+            }
+            simulator("IPad") {
+                //Usage: ./gradlew iosDeployIPadDebug
+                device = IOSDevices.IPAD_MINI_6th_Gen
+            }
+            //connectedDevice("Device") {
+                //First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
+                //teamId="***"
+                //Usage: ./gradlew iosDeployDeviceRelease
+            //}
+        }
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
 }
 
 android {
@@ -54,8 +108,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8//todo check 11
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     sourceSets {

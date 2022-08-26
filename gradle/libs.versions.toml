@@ -1,9 +1,9 @@
 [versions]
 kotlin = "1.6.21" # https://kotlinlang.org/docs/releases.html#release-details
-agp = "7.0.0" # https://developer.android.com/studio/releases/gradle-plugin
-jetbrainsCompose = "1.2.0-alpha01-dev709" # https://github.com/JetBrains/compose-jb
+agp = "7.0.4" # https://developer.android.com/studio/releases/gradle-plugin
+jetbrainsCompose = "1.2.0-alpha01-dev725" # https://github.com/JetBrains/compose-jb
 sqldelight = "1.5.3" # https://github.com/cashapp/sqldelight/releases
-coroutines = "1.6.2" # https://github.com/Kotlin/kotlinx.coroutines
+coroutines = "1.6.3" # https://github.com/Kotlin/kotlinx.coroutines
 
 coreKtx = "1.8.0" # https://developer.android.com/jetpack/androidx/releases/core
 appcompat = "1.4.2" # https://developer.android.com/jetpack/androidx/releases/appcompat

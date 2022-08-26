@@ -11,4 +11,7 @@ Android + Desktop multiplatform app using [Jetbrains Compose](https://github.com
 ![](images/desktop.png)
 
 This project evolved from [Coffeegram Android](https://github.com/phansier/Coffeegram) (with Andorid Jetpack Compose) repository.
- 
+
+## Run on iOS simulator
+`./gradlew iosDeployIPhone8Debug --no-configuration-cache`
+`./gradlew iosDeployIPadDebug --no-configuration-cache`
