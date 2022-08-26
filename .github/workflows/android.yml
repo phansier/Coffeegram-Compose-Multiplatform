@@ -18,6 +18,6 @@ jobs:
       with:
         java-version: 11
     - name: Test Common
-      run: ./gradlew :common:testDebugUnitTest
-    - name: Build with Gradle
-      run: ./gradlew :app:assemble
+      run: make testCommon
+    - name: Build Android
+      run: make buildAndroid
