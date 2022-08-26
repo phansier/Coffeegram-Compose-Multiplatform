@@ -1,24 +1,21 @@
 package ru.beryukhov.coffeegram.model
 
-
 import kotlinx.datetime.LocalDate
 import ru.beryukhov.coffeegram.store_lib.InMemoryStore
 
-
 class NavigationStore : InMemoryStore<NavigationIntent, NavigationState>(
-        initialState = NavigationState.TablePage(nowYM())
-    ) {
-
+    initialState = NavigationState.TablePage(nowYM())
+) {
 
     override fun handleIntent(intent: NavigationIntent): NavigationState {
         return when (intent) {
-            NavigationIntent.NextMonth -> {
+            NavigationIntent.NextMonth ->
                 increaseMonth(stateFlow.value.yearMonth)
-            }
-            NavigationIntent.PreviousMonth -> {
+
+            NavigationIntent.PreviousMonth ->
                 decreaseMonth(stateFlow.value.yearMonth)
-            }
-            is NavigationIntent.OpenCoffeeListPage -> {
+
+            is NavigationIntent.OpenCoffeeListPage ->
                 NavigationState.CoffeeListPage(
                     LocalDate(
                         year = stateFlow.value.yearMonth.year,
@@ -26,10 +23,8 @@ class NavigationStore : InMemoryStore<NavigationIntent, NavigationState>(
                         dayOfMonth = intent.dayOfMonth
                     )
                 )
-            }
-            NavigationIntent.ReturnToTablePage -> {
-                NavigationState.TablePage(stateFlow.value.yearMonth)
-            }
+
+            NavigationIntent.ReturnToTablePage -> NavigationState.TablePage(stateFlow.value.yearMonth)
         }
     }
 

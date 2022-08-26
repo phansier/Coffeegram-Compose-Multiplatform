@@ -4,7 +4,7 @@ import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 
-lateinit var context: Context //todo fill it
+lateinit var context: Context // todo fill it
 
 actual class DriverFactory {
     actual fun createDriver(): SqlDriver {

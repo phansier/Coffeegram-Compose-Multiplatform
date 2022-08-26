@@ -1,6 +1,6 @@
 package ru.beryukhov.coffeegram
 
-//import androidx.compose.ui.tooling.preview.Preview
+// import androidx.compose.ui.tooling.preview.Preview
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -31,4 +31,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-

@@ -21,11 +21,9 @@ class CoffeeStorage(private val repository: CoffeeRepository = lazy_repository) 
     override suspend fun saveState(state: DaysCoffeesState) {
         repository.createOrUpdate(state.coffees.toDaysCoffeesList())
     }
-
 }
 
-
-//@VisibleForTesting
+// @VisibleForTesting
 internal fun List<DbDayCoffee>.toState(): DaysCoffeesState {
     val map = mutableMapOf<LocalDate, DayCoffee>()
     this.forEach {
@@ -40,7 +38,7 @@ internal fun List<DbDayCoffee>.toState(): DaysCoffeesState {
     return DaysCoffeesState(map)
 }
 
-//@VisibleForTesting
+// @VisibleForTesting
 internal fun Map<LocalDate, DayCoffee>.toDaysCoffeesList(): List<DbDayCoffee> {
     val list = mutableListOf<DbDayCoffee>()
     this.forEach { entry: Map.Entry<LocalDate, DayCoffee> ->

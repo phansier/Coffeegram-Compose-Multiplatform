@@ -1,17 +1,16 @@
 package ru.beryukhov.coffeegram
 
-
 import kotlinx.datetime.LocalDate
-import ru.beryukhov.coffeegram.data.CoffeeType
-import ru.beryukhov.coffeegram.data.DayCoffee
-import ru.beryukhov.coffeegram.model.DaysCoffeesState
-import ru.beryukhov.coffeegram.model.changeCoffeeCount
-import ru.beryukhov.coffeegram.pages.withEmpty
 import repository.model.DbDayCoffee
 import ru.beryukhov.coffeegram.data.Americano
 import ru.beryukhov.coffeegram.data.Cappuccino
+import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.data.CommonCoffee
+import ru.beryukhov.coffeegram.data.DayCoffee
 import ru.beryukhov.coffeegram.data.Latte
+import ru.beryukhov.coffeegram.model.DaysCoffeesState
+import ru.beryukhov.coffeegram.model.changeCoffeeCount
+import ru.beryukhov.coffeegram.pages.withEmpty
 import ru.beryukhov.coffeegram.repository.toDaysCoffeesList
 import ru.beryukhov.coffeegram.repository.toState
 import kotlin.test.Test

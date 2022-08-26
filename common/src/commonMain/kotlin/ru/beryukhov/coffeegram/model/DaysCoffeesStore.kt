@@ -19,14 +19,16 @@ class DaysCoffeesStore : PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
     }
 
     private fun increaseCoffee(localDate: LocalDate, coffeeType: CoffeeType): DaysCoffeesState {
-        return putCoffeeCount(localDate, coffeeType,
-            getCoffeeOrNull(localDate, coffeeType)?.plus(1)?:1
+        return putCoffeeCount(
+            localDate, coffeeType,
+            getCoffeeOrNull(localDate, coffeeType)?.plus(1) ?: 1
         )
     }
 
     private fun decreaseCoffee(localDate: LocalDate, coffeeType: CoffeeType): DaysCoffeesState {
-        return putCoffeeCount(localDate, coffeeType,
-            getCoffeeOrNull(localDate, coffeeType)?.minus(1)?:0
+        return putCoffeeCount(
+            localDate, coffeeType,
+            getCoffeeOrNull(localDate, coffeeType)?.minus(1) ?: 0
         )
     }
 
@@ -42,12 +44,12 @@ class DaysCoffeesStore : PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
             )
         )
     }
-
 }
 
-//@VisibleForTesting
+// @VisibleForTesting
 internal fun changeCoffeeCount(
-    oldValue: Map<LocalDate, DayCoffee>, localDate: LocalDate,
+    oldValue: Map<LocalDate, DayCoffee>,
+    localDate: LocalDate,
     coffeeType: CoffeeType,
     count: Int
 ): Map<LocalDate, DayCoffee> {

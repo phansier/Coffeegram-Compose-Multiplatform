@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-abstract class PersistentStore<Intent : Any, State : Any>(initialState: State, private val storage: Storage<State>):
+abstract class PersistentStore<Intent : Any, State : Any>(initialState: State, private val storage: Storage<State>) :
     Store<Intent, State> {
     private val intentFlow = MutableSharedFlow<Intent>()
     private val stateFlow = MutableStateFlow(initialState)
@@ -15,18 +15,18 @@ abstract class PersistentStore<Intent : Any, State : Any>(initialState: State, p
     override val state: StateFlow<State>
         get() = stateFlow
 
-    override fun newIntent(intent: Intent) {
-        GlobalScope.launch {
-            intentFlow.emit(intent)
-        }
-    }
-
     init {
         GlobalScope.launch {
             getStoredState()?.let {
                 stateFlow.value = it
             }
             handleIntents()
+        }
+    }
+
+    override fun newIntent(intent: Intent) {
+        GlobalScope.launch {
+            intentFlow.emit(intent)
         }
     }
 

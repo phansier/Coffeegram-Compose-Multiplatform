@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.compose.experimental.dsl.IOSDevices
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.experimental.dsl.IOSDevices
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
@@ -27,7 +27,7 @@ kotlin {
             }
         }
     }
-
+    @Suppress("UnusedPrivateMember")
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -76,24 +76,24 @@ kotlin {
 }
 
 compose.experimental {
-    //web.application {}
+    // web.application {}
     uikit.application {
         bundleIdPrefix = "ru.beryukhov"
         projectName = "Coffeegram"
         deployConfigurations {
             simulator("IPhone8") {
-                //Usage: ./gradlew iosDeployIPhone8Debug
+                // Usage: ./gradlew iosDeployIPhone8Debug
                 device = IOSDevices.IPHONE_8
             }
             simulator("IPad") {
-                //Usage: ./gradlew iosDeployIPadDebug
+                // Usage: ./gradlew iosDeployIPadDebug
                 device = IOSDevices.IPAD_MINI_6th_Gen
             }
-            //connectedDevice("Device") {
-                //First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
-                //teamId="***"
-                //Usage: ./gradlew iosDeployDeviceRelease
-            //}
+            // connectedDevice("Device") {
+                // First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
+                // teamId="***"
+                // Usage: ./gradlew iosDeployDeviceRelease
+            // }
         }
     }
 }

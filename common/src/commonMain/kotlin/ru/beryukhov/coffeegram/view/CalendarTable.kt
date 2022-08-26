@@ -1,6 +1,6 @@
 package ru.beryukhov.coffeegram.view
 
-//import androidx.compose.ui.tooling.preview.Preview
+// import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -33,7 +32,6 @@ import ru.beryukhov.coffeegram.model.dateFormatSymbolsShortWeekdays
 import ru.beryukhov.coffeegram.model.getShortDisplayName
 import ru.beryukhov.coffeegram.times
 
-
 data class DayItem(
     val day: String,
     val coffeeType: CoffeeType? = null,
@@ -46,15 +44,17 @@ fun DayCell(
     modifier: Modifier = Modifier,
     navigationStore: NavigationStore
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier =
-    if (dayItem.dayOfMonth == null) modifier else
-        modifier.clickable(onClick = {
-            navigationStore.newIntent(
-                NavigationIntent.OpenCoffeeListPage(
-                    dayItem.dayOfMonth
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally, modifier =
+        if (dayItem.dayOfMonth == null) modifier else {
+            modifier.clickable(onClick = {
+                navigationStore.newIntent(
+                    NavigationIntent.OpenCoffeeListPage(
+                        dayItem.dayOfMonth
+                    )
                 )
-            )
-        })
+            })
+        }
     ) {
         with(dayItem) {
             if (coffeeType != null) {
@@ -69,7 +69,7 @@ fun DayCell(
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "",
-                    tint = Color(0x00000000),//Color.Transparent,
+                    tint = Color(0x00000000), // Color.Transparent,
                     modifier = Modifier.size(32.dp)
                 )
             }
@@ -101,7 +101,6 @@ fun WeekRow(dayItems: List<DayItem?>, navigationStore: NavigationStore) {
         }
         Divider()
     }
-
 }
 
 @Composable
@@ -153,7 +152,7 @@ fun MonthTable(
     )
     val daysList: List<WeekDayVectorPair> = days.toList().sortedBy { it.first }.map { it.second }
     val firstWeek: List<DayItem> =
-        listOf(DayItem("")) * (numberOfFirstDay) + daysList.take(7 - numberOfFirstDay)
+        listOf(DayItem("")) * numberOfFirstDay + daysList.take(7 - numberOfFirstDay)
             .map(WeekDayVectorPair::toDayItem)
     val secondToSixWeeks: List<List<DayItem>> = listOf(2, 3, 4, 5, 6).map {
         daysList.drop(7 * (it - 1) - numberOfFirstDay).take(7)
@@ -172,8 +171,7 @@ fun MonthTable(
     )
 }
 
-
-//@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 fun TablePreview() {
     CoffeegramTheme {
@@ -191,7 +189,7 @@ fun TablePreview() {
             )
         )*/
         SampleTable()
-        //Text(getWeekDaysNames(ContextAmbient.current).toString())
+        // Text(getWeekDaysNames(ContextAmbient.current).toString())
     }
 }
 
@@ -203,7 +201,6 @@ fun SampleTable(modifier: Modifier = Modifier) =
         modifier = modifier,
         navigationStore = NavigationStore()
     )
-
 
 fun getWeekDaysNames(): List<String> =
     dateFormatSymbolsShortWeekdays()

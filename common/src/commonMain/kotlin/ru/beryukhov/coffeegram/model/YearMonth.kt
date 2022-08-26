@@ -60,13 +60,12 @@ data class YearMonth(val year: Int, val month: Month) {
             else -> ""
         }.toLowerCase().capitalize()
 
-
     fun atDay(day: Int): LocalDate {
         return LocalDate(year, month, day)
     }
 
     fun isValidDay(dayOfMonth: Int): Boolean {
-        return dayOfMonth >= 1 && dayOfMonth <= lengthOfMonth();
+        return dayOfMonth >= 1 && dayOfMonth <= lengthOfMonth()
     }
 
     private fun lengthOfMonth(): Int {
@@ -106,7 +105,7 @@ private fun Month.length(leapYear: Boolean): Int =
     }
 
 private fun isLeapYear(prolepticYear: Int): Boolean =
-    ((prolepticYear and 3) == 0) && ((prolepticYear % 100) != 0 || (prolepticYear % 400) == 0)
+    prolepticYear and 3 == 0 && (prolepticYear % 100 != 0 || prolepticYear % 400 == 0)
 
-fun dateFormatSymbolsShortWeekdays (): List<String> =
-    DayOfWeek.values().map{ it.getShortDisplayName() }
+fun dateFormatSymbolsShortWeekdays(): List<String> =
+    DayOfWeek.values().map { it.getShortDisplayName() }

@@ -11,9 +11,6 @@ import androidx.compose.ui.res.painterResource
 import ru.beryukhov.coffeegram.R
 import ru.beryukhov.coffeegram.app_ui.brown500
 
-private const val SplashWaitTime: Long = 2000
-
-
 @Composable
 fun LandingPage(modifier: Modifier = Modifier) {
     Box(
