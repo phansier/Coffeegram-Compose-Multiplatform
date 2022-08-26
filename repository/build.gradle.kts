@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -28,12 +26,12 @@ kotlin {
         summary = "Repository for Coffegram"
         homepage = "https://github.com/phansier/Coffeegram"
         ios.deploymentTarget = "14.1"
-        //podfile = project.file("../iosApp/Podfile")
+        // podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "repository"
         }
     }
-    
+    @Suppress("UnusedPrivateMember")
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -73,7 +71,6 @@ kotlin {
                 implementation(libs.sqldelight.sqliteDriver)
             }
         }
-
     }
 }
 

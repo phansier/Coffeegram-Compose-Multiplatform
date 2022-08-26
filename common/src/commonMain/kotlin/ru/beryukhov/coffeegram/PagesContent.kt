@@ -20,7 +20,7 @@ import ru.beryukhov.coffeegram.pages.CoffeeListPage
 import ru.beryukhov.coffeegram.pages.TableAppBar
 import ru.beryukhov.coffeegram.pages.TablePage
 
-//@OptIn(ExperimentalCoroutinesApi::class)
+// @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun PagesContent(
     modifier: Modifier = Modifier,
@@ -60,8 +60,7 @@ fun PagesContent(
     }
 }
 
-
-//@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     PagesContent(navigationStore = NavigationStore(), daysCoffeesStore = DaysCoffeesStore())

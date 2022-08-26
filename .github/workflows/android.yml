@@ -17,7 +17,9 @@ jobs:
       uses: actions/setup-java@v1.4.3
       with:
         java-version: 11
+    - name: Detekt
+      run: make detekt
     - name: Test Common
-      run: ./gradlew :common:testDebugUnitTest
-    - name: Build with Gradle
-      run: ./gradlew :app:assemble
+      run: make testCommon
+    - name: Build Android
+      run: make buildAndroid

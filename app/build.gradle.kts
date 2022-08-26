@@ -23,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -41,10 +41,6 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
 
-
-    implementation(libs.threetenabp)
-
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
-
 }

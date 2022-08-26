@@ -25,7 +25,6 @@ class CoffeeRepository {
         }
     }
 
-
     private fun create(dateCoffees: List<DbDayCoffee>) {
         dateCoffees.forEach {
             db.insertSqlDayCoffee(it.date, it.coffeeName, it.count.toLong())
@@ -37,9 +36,13 @@ class CoffeeRepository {
         oldCoffees: List<SqlDayCoffee>
     ) {
         newCoffees.forEach { rdc ->
-            oldCoffees.firstOrNull { it.date == rdc.date && it.coffeeName == rdc.coffeeName && it.count.toInt() != rdc.count }
+            oldCoffees.firstOrNull {
+                it.date == rdc.date &&
+                    it.coffeeName == rdc.coffeeName &&
+                    it.count.toInt() != rdc.count
+            }
                 ?.also { old ->
-                    //found RDC to update count
+                    // found RDC to update count
                     db.updateSqlDayCoffee(old.date, old.coffeeName, rdc.count.toLong())
                 }
             oldCoffees.firstOrNull { it.date == rdc.date && it.coffeeName == rdc.coffeeName }
@@ -51,6 +54,6 @@ class CoffeeRepository {
     }
 
     fun getAll(): List<DbDayCoffee> {
-        return db.selectAll().executeAsList().map {it.toDb()}
+        return db.selectAll().executeAsList().map { it.toDb() }
     }
 }

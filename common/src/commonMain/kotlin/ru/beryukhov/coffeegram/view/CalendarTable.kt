@@ -1,6 +1,6 @@
 package ru.beryukhov.coffeegram.view
 
-//import androidx.compose.ui.tooling.preview.Preview
+// import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,27 +16,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ParagraphStyle
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.Month
 import ru.beryukhov.coffeegram.app_ui.CoffeegramTheme
 import ru.beryukhov.coffeegram.data.Cappuccino
 import ru.beryukhov.coffeegram.data.CoffeeType
-import ru.beryukhov.coffeegram.date_time.dateFormatSymbolsShortWeekdays
-import ru.beryukhov.coffeegram.date_time.local_date.dayOfWeek
-import ru.beryukhov.coffeegram.date_time.year_month.DayOfWeek
-import ru.beryukhov.coffeegram.date_time.year_month.YearMonth
-import ru.beryukhov.coffeegram.date_time.year_month.atDay
-import ru.beryukhov.coffeegram.date_time.year_month.getShortDisplayName
-import ru.beryukhov.coffeegram.date_time.year_month.isValidDay
-import ru.beryukhov.coffeegram.date_time.year_month.of
 import ru.beryukhov.coffeegram.model.NavigationIntent
 import ru.beryukhov.coffeegram.model.NavigationStore
+import ru.beryukhov.coffeegram.model.YearMonth
+import ru.beryukhov.coffeegram.model.dateFormatSymbolsShortWeekdays
+import ru.beryukhov.coffeegram.model.getShortDisplayName
 import ru.beryukhov.coffeegram.times
-
 
 data class DayItem(
     val day: String,
@@ -50,15 +44,17 @@ fun DayCell(
     modifier: Modifier = Modifier,
     navigationStore: NavigationStore
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier =
-    if (dayItem.dayOfMonth == null) modifier else
-        modifier.clickable(onClick = {
-            navigationStore.newIntent(
-                NavigationIntent.OpenCoffeeListPage(
-                    dayItem.dayOfMonth
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally, modifier =
+        if (dayItem.dayOfMonth == null) modifier else {
+            modifier.clickable(onClick = {
+                navigationStore.newIntent(
+                    NavigationIntent.OpenCoffeeListPage(
+                        dayItem.dayOfMonth
+                    )
                 )
-            )
-        })
+            })
+        }
     ) {
         with(dayItem) {
             if (coffeeType != null) {
@@ -73,7 +69,7 @@ fun DayCell(
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "",
-                    tint = Color(0x00000000),//Color.Transparent,
+                    tint = Color(0x00000000), // Color.Transparent,
                     modifier = Modifier.size(32.dp)
                 )
             }
@@ -105,7 +101,6 @@ fun WeekRow(dayItems: List<DayItem?>, navigationStore: NavigationStore) {
         }
         Divider()
     }
-
 }
 
 @Composable
@@ -135,9 +130,7 @@ fun MonthTable(
     navigationStore: NavigationStore,
     modifier: Modifier = Modifier
 ) {
-    val weekDays: List<DayItem> = getWeekDaysNames(
-        Locale.current
-    ).map { DayItem(it) }
+    val weekDays: List<DayItem> = getWeekDaysNames().map { DayItem(it) }
     val days1to31 = mutableListOf<Int>()
     for (i in 1 until 31) {
         days1to31.add(i)
@@ -148,21 +141,18 @@ fun MonthTable(
             {
                 WeekDayVectorPair(
                     it,
-                    yearMonth.atDay(it).dayOfWeek()
+                    yearMonth.atDay(it).dayOfWeek
                 )
             })
         .toMutableMap()
     filledDayItemsMap.forEach { days[it.key]?.coffeeType = it.value }
-    val weekDaysStrings =
-        getWeekDaysNames(Locale.current)
+    val weekDaysStrings = getWeekDaysNames()
     val numberOfFirstDay = weekDaysStrings.indexOf(
-        days[1]!!.weekDay.getShortDisplayName(
-            Locale.current
-        )
+        days[1]!!.weekDay.getShortDisplayName()
     )
     val daysList: List<WeekDayVectorPair> = days.toList().sortedBy { it.first }.map { it.second }
     val firstWeek: List<DayItem> =
-        listOf(DayItem("")) * (numberOfFirstDay) + daysList.take(7 - numberOfFirstDay)
+        listOf(DayItem("")) * numberOfFirstDay + daysList.take(7 - numberOfFirstDay)
             .map(WeekDayVectorPair::toDayItem)
     val secondToSixWeeks: List<List<DayItem>> = listOf(2, 3, 4, 5, 6).map {
         daysList.drop(7 * (it - 1) - numberOfFirstDay).take(7)
@@ -181,8 +171,7 @@ fun MonthTable(
     )
 }
 
-
-//@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
 fun TablePreview() {
     CoffeegramTheme {
@@ -200,29 +189,21 @@ fun TablePreview() {
             )
         )*/
         SampleTable()
-        //Text(getWeekDaysNames(ContextAmbient.current).toString())
+        // Text(getWeekDaysNames(ContextAmbient.current).toString())
     }
 }
 
 @Composable
 fun SampleTable(modifier: Modifier = Modifier) =
     MonthTable(
-        of(2020, 7),
+        YearMonth(2020, Month.JULY),
         mapOf(2 to Cappuccino),
         modifier = modifier,
         navigationStore = NavigationStore()
     )
 
-
 fun getWeekDaysNames(): List<String> =
-    getWeekDaysNames(locale = Locale.current)
-
-fun getWeekDaysNames(locale: Locale): List<String> {
-    val list = dateFormatSymbolsShortWeekdays(locale).toMutableList()
-    // this fun adds empty string at the beginning
-    list.removeAt(0)
-    return list
-}
+    dateFormatSymbolsShortWeekdays()
 
 fun getEmptyWeek(start: Int, end: Int): List<DayItem> {
     val list = mutableListOf<DayItem>()

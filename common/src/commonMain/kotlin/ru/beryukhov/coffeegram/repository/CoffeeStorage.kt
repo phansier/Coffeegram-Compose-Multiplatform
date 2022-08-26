@@ -1,12 +1,12 @@
 package ru.beryukhov.coffeegram.repository
 
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDate.Companion.parse
 import repository.CoffeeRepository
 import repository.model.DbDayCoffee
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.data.DayCoffee
 import ru.beryukhov.coffeegram.data.coffeeTypeValueOf
-import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
-import ru.beryukhov.coffeegram.date_time.local_date.parse
 import ru.beryukhov.coffeegram.model.DaysCoffeesState
 import ru.beryukhov.coffeegram.store_lib.Storage
 
@@ -21,11 +21,9 @@ class CoffeeStorage(private val repository: CoffeeRepository = lazy_repository) 
     override suspend fun saveState(state: DaysCoffeesState) {
         repository.createOrUpdate(state.coffees.toDaysCoffeesList())
     }
-
 }
 
-
-//@VisibleForTesting
+// @VisibleForTesting
 internal fun List<DbDayCoffee>.toState(): DaysCoffeesState {
     val map = mutableMapOf<LocalDate, DayCoffee>()
     this.forEach {
@@ -40,7 +38,7 @@ internal fun List<DbDayCoffee>.toState(): DaysCoffeesState {
     return DaysCoffeesState(map)
 }
 
-//@VisibleForTesting
+// @VisibleForTesting
 internal fun Map<LocalDate, DayCoffee>.toDaysCoffeesList(): List<DbDayCoffee> {
     val list = mutableListOf<DbDayCoffee>()
     this.forEach { entry: Map.Entry<LocalDate, DayCoffee> ->
