@@ -1,11 +1,10 @@
 package ru.beryukhov.coffeegram.model
 
+import kotlinx.datetime.LocalDate
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.data.DayCoffee
-import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
 import ru.beryukhov.coffeegram.repository.CoffeeStorage
 import ru.beryukhov.coffeegram.store_lib.PersistentStore
-import ru.beryukhov.coffeegram.store_lib.Store
 
 class DaysCoffeesStore : PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
     initialState = DaysCoffeesState(),

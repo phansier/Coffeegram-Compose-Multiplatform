@@ -44,6 +44,7 @@ kotlin {
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.coreKtx)
@@ -57,7 +58,7 @@ kotlin {
         }
         val desktopMain by getting {
             dependencies {
-                api(compose.desktop.common)
+                implementation(compose.desktop.currentOs)
             }
         }
 

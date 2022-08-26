@@ -1,22 +1,12 @@
 package ru.beryukhov.coffeegram.model
 
-import ru.beryukhov.coffeegram.date_time.local_date.LocalDate
-import ru.beryukhov.coffeegram.date_time.local_date.monthValue
-import ru.beryukhov.coffeegram.date_time.local_date.of
-import ru.beryukhov.coffeegram.date_time.local_date.year
-import ru.beryukhov.coffeegram.date_time.year_month.YearMonth
-import ru.beryukhov.coffeegram.date_time.year_month.minusMonths
-import ru.beryukhov.coffeegram.date_time.year_month.monthValue
-import ru.beryukhov.coffeegram.date_time.year_month.now
-import ru.beryukhov.coffeegram.date_time.year_month.of
-import ru.beryukhov.coffeegram.date_time.year_month.plusMonths
-import ru.beryukhov.coffeegram.date_time.year_month.year
+
+import kotlinx.datetime.LocalDate
 import ru.beryukhov.coffeegram.store_lib.InMemoryStore
-import ru.beryukhov.coffeegram.store_lib.Store
 
 
 class NavigationStore : InMemoryStore<NavigationIntent, NavigationState>(
-        initialState = NavigationState.TablePage(now())
+        initialState = NavigationState.TablePage(nowYM())
     ) {
 
 
@@ -30,10 +20,10 @@ class NavigationStore : InMemoryStore<NavigationIntent, NavigationState>(
             }
             is NavigationIntent.OpenCoffeeListPage -> {
                 NavigationState.CoffeeListPage(
-                    of(
-                        stateFlow.value.yearMonth.year,
-                        stateFlow.value.yearMonth.monthValue,
-                        intent.dayOfMonth
+                    LocalDate(
+                        year = stateFlow.value.yearMonth.year,
+                        month = stateFlow.value.yearMonth.month,
+                        dayOfMonth = intent.dayOfMonth
                     )
                 )
             }
@@ -62,6 +52,6 @@ sealed class NavigationIntent {
 sealed class NavigationState(val yearMonth: YearMonth) {
     class TablePage(yearMonth: YearMonth) : NavigationState(yearMonth)
     data class CoffeeListPage(val date: LocalDate) : NavigationState(
-        of(date.year, date.monthValue)
+        YearMonth(date.year, date.month)
     )
 }
