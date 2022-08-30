@@ -4,7 +4,7 @@
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.6.21-blue.svg)](https://kotlinlang.org)
 [![Android CI](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml/badge.svg)](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-77-blue)](https://jetc.dev/issues/077.html)
-[![Jetc.dev](https://img.shields.io/badge/jetc.dev-25-blue)](https://jetc.dev/issues/130.html)
+[![Jetc.dev](https://img.shields.io/badge/jetc.dev-130-blue)](https://jetc.dev/issues/130.html)
 
 
 Android + Desktop + iOS (!!!) multiplatform app using [Jetbrains Compose](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
