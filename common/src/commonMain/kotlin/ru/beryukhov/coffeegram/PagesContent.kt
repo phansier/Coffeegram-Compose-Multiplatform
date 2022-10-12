@@ -31,7 +31,8 @@ fun PagesContent(
     val navigationState: NavigationState by navigationStore.state.collectAsState()
     CoffeegramTheme {
         Scaffold(
-            modifier, topBar = {
+            modifier = modifier,
+            topBar = {
                 when (navigationState) {
                     is NavigationState.TablePage -> TableAppBar(
                         navigationState.yearMonth,

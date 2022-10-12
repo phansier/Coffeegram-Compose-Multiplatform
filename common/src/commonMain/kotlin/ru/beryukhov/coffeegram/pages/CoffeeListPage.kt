@@ -28,7 +28,8 @@ import ru.beryukhov.coffeegram.view.CoffeeTypeItem
 
 @Composable
 fun CoffeeListAppBar(navigationStore: NavigationStore) {
-    TopAppBar(title = { Text("Add drink") },
+    TopAppBar(
+        title = { Text("Add drink") },
         navigationIcon = {
             IconButton(onClick = { navigationStore.newIntent(NavigationIntent.ReturnToTablePage) }) {
                 Icon(
@@ -57,14 +58,16 @@ fun CoffeeList(
     val dayCoffeeState: DaysCoffeesState by daysCoffeesStore.state.collectAsState()
     val dayCoffee = dayCoffeeState.coffees[localDate] ?: DayCoffee()
     LazyColumn(modifier = modifier.fillMaxHeight()) {
-        itemsIndexed(items = dayCoffee.coffeeCountMap.withEmpty(),
+        itemsIndexed(
+            items = dayCoffee.coffeeCountMap.withEmpty(),
             itemContent = { _, pair: Pair<CoffeeType, Int> ->
                 CoffeeTypeItem(localDate, pair.first, pair.second, daysCoffeesStore)
-            })
+            }
+        )
     }
 }
 
-data class MutablePair(val ct: CoffeeType, var count: Int)
+class MutablePair(val ct: CoffeeType, var count: Int)
 
 // @VisibleForTesting
 internal fun Map<CoffeeType, Int>.withEmpty(): List<Pair<CoffeeType, Int>> {

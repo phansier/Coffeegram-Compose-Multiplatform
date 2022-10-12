@@ -45,20 +45,20 @@ data class YearMonth(val year: Int, val month: Month) {
 
     fun getFullMonthName(): String =
         when (this.month) {
-                    JANUARY -> "JANUARY"
-                    FEBRUARY -> "FEBRUARY"
-                    MARCH -> "MARCH"
-                    APRIL -> "APRIL"
-                    MAY -> "MAY"
-                    JUNE -> "JUNE"
-                    JULY -> "JULY"
-                    AUGUST -> "AUGUST"
-                    SEPTEMBER -> "SEPTEMBER"
-                    OCTOBER -> "OCTOBER"
-                    NOVEMBER -> "NOVEMBER"
-                    DECEMBER -> "DECEMBER"
-                    else -> ""
-                }.lowercase().replaceFirstChar { it.titlecase()}
+            JANUARY -> "JANUARY"
+            FEBRUARY -> "FEBRUARY"
+            MARCH -> "MARCH"
+            APRIL -> "APRIL"
+            MAY -> "MAY"
+            JUNE -> "JUNE"
+            JULY -> "JULY"
+            AUGUST -> "AUGUST"
+            SEPTEMBER -> "SEPTEMBER"
+            OCTOBER -> "OCTOBER"
+            NOVEMBER -> "NOVEMBER"
+            DECEMBER -> "DECEMBER"
+            else -> ""
+        }.lowercase().replaceFirstChar { it.titlecase() }
 
     fun atDay(day: Int): LocalDate {
         return LocalDate(year, month, day)
@@ -92,7 +92,7 @@ fun DayOfWeek.getShortDisplayName(): String =
         SATURDAY -> "SAT"
         SUNDAY -> "SUN"
         else -> ""
-    }.lowercase().replaceFirstChar { it.titlecase()}
+    }.lowercase().replaceFirstChar { it.titlecase() }
 
 private fun Month.days(leapYear: Boolean): Int =
     when (this) {
