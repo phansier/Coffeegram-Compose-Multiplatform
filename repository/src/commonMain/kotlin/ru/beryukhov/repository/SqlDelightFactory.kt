@@ -4,11 +4,11 @@ package ru.beryukhov.repository
 
 import com.squareup.sqldelight.db.SqlDriver
 
-expect class DriverFactory() {
+internal expect class DriverFactory() {
     fun createDriver(): SqlDriver
 }
 
-fun createDatabase(driverFactory: DriverFactory): CoffeeDb {
+internal fun createDatabase(driverFactory: DriverFactory): CoffeeDb {
     val driver = driverFactory.createDriver()
     val database = CoffeeDb(driver)
 

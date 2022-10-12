@@ -36,30 +36,33 @@ fun TableAppBar(
     yearMonth: YearMonth,
     navigationStore: NavigationStore
 ) {
-    TopAppBar(title = {
-        Row(horizontalArrangement = Arrangement.Center) {
-            Text(
-                modifier = Modifier.weight(1f),
-                text = AnnotatedString(
-                    text = yearMonth.getFullMonthName(),
-                    paragraphStyle = ParagraphStyle(textAlign = TextAlign.Center)
+    TopAppBar(
+        title = {
+            Row(horizontalArrangement = Arrangement.Center) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = AnnotatedString(
+                        text = yearMonth.getFullMonthName(),
+                        paragraphStyle = ParagraphStyle(textAlign = TextAlign.Center)
+                    )
                 )
-            )
-        }
-    },
+            }
+        },
         navigationIcon = {
             IconButton(
                 onClick = { navigationStore.newIntent(NavigationIntent.PreviousMonth) },
                 modifier = Modifier.semantics {
                     contentDescription = "ArrowLeft"
-                }) { Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "") }
+                }
+            ) { Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "") }
         },
         actions = {
             IconButton(
                 onClick = { navigationStore.newIntent(NavigationIntent.NextMonth) },
                 modifier = Modifier.semantics {
                     testTag = "ArrowRight"
-                }) { Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "") }
+                }
+            ) { Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "") }
         }
     )
 }

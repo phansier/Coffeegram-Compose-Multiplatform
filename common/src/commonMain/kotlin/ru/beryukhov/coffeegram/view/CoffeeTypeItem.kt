@@ -32,12 +32,16 @@ fun CoffeeTypeItem(
     Row(
         modifier = Modifier.padding(16.dp)
     ) {
-        Image(coffeeType, modifier = Modifier
-            .size(48.dp)
-            .align(Alignment.CenterVertically))
+        Image(
+            coffeeType = coffeeType,
+            modifier = Modifier
+                .size(48.dp)
+                .align(Alignment.CenterVertically)
+        )
         Spacer(Modifier.width(16.dp))
         Text(
-            coffeeType.name, style = typography.body1,
+            text = coffeeType.name,
+            style = typography.body1,
             modifier = Modifier.align(Alignment.CenterVertically).weight(1f)
         )
         Row(modifier = Modifier.align(Alignment.CenterVertically)) {
@@ -57,7 +61,8 @@ fun CoffeeTypeItem(
                 Text("-")
             }
             Text(
-                "$count", style = typography.body2,
+                text = "$count",
+                style = typography.body2,
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
             TextButton(
@@ -75,6 +80,9 @@ fun CoffeeTypeItem(
 @Composable
 fun preview() {
     CoffeeTypeItem(
-        nowLD(), Cappuccino, 5, DaysCoffeesStore()
+        localDate = nowLD(),
+        coffeeType = Cappuccino,
+        count = 5,
+        daysCoffeesStore = DaysCoffeesStore()
     )
 }

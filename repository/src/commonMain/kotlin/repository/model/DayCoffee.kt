@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 package repository.model
 
 import ru.beryukhov.repository.SqlDayCoffee

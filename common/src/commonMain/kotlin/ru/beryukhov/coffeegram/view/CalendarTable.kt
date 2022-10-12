@@ -45,8 +45,8 @@ fun DayCell(
     navigationStore: NavigationStore
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally, modifier =
-        if (dayItem.dayOfMonth == null) modifier else {
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = if (dayItem.dayOfMonth == null) modifier else {
             modifier.clickable(onClick = {
                 navigationStore.newIntent(
                     NavigationIntent.OpenCoffeeListPage(
@@ -114,7 +114,7 @@ fun MonthTableAdjusted(
     }
 }
 
-data class WeekDayVectorPair(
+class WeekDayVectorPair(
     val day: Int,
     val weekDay: DayOfWeek,
     var coffeeType: CoffeeType? = null,
@@ -143,7 +143,8 @@ fun MonthTable(
                     it,
                     yearMonth.atDay(it).dayOfWeek
                 )
-            })
+            }
+        )
         .toMutableMap()
     filledDayItemsMap.forEach { days[it.key]?.coffeeType = it.value }
     val weekDaysStrings = getWeekDaysNames()
