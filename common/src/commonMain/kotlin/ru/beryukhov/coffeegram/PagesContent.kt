@@ -3,7 +3,14 @@ package ru.beryukhov.coffeegram
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -13,14 +20,24 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.beryukhov.coffeegram.app_ui.CoffeegramTheme
 import ru.beryukhov.coffeegram.model.DaysCoffeesStore
+import ru.beryukhov.coffeegram.model.NavigationIntent
 import ru.beryukhov.coffeegram.model.NavigationState
 import ru.beryukhov.coffeegram.model.NavigationStore
+import ru.beryukhov.coffeegram.model.ThemeState
+import ru.beryukhov.coffeegram.model.ThemeStore
 import ru.beryukhov.coffeegram.pages.CoffeeListAppBar
 import ru.beryukhov.coffeegram.pages.CoffeeListPage
+import ru.beryukhov.coffeegram.pages.SettingsAppBar
+import ru.beryukhov.coffeegram.pages.SettingsPage
 import ru.beryukhov.coffeegram.pages.TableAppBar
 import ru.beryukhov.coffeegram.pages.TablePage
+import ru.beryukhov.coffeegram.repository.ThemeDataStorePrefStorage
+import ru.beryukhov.coffeegram.repository.createDataStore
 
-// @OptIn(ExperimentalCoroutinesApi::class)
+val datastore by lazy { createDataStore() }
+
+val themeStore by lazy { ThemeStore(ThemeDataStorePrefStorage(datastore)) }
+
 @Composable
 fun PagesContent(
     modifier: Modifier = Modifier,
@@ -29,32 +46,62 @@ fun PagesContent(
     daysCoffeesStore: DaysCoffeesStore
 ) {
     val navigationState: NavigationState by navigationStore.state.collectAsState()
-    CoffeegramTheme {
+    val currentNavigationState = navigationState
+    CoffeegramTheme(
+        themeState = themeState()
+    ) {
         Scaffold(
             modifier = modifier,
             topBar = {
-                when (navigationState) {
+                when (currentNavigationState) {
                     is NavigationState.TablePage -> TableAppBar(
-                        navigationState.yearMonth,
+                        yearMonth = currentNavigationState.yearMonth,
                         navigationStore
                     )
-                    is NavigationState.CoffeeListPage -> CoffeeListAppBar(navigationStore)
+                    is NavigationState.CoffeeListPage -> CoffeeListAppBar(
+                        navigationStore
+                    )
+                    is NavigationState.SettingsPage -> SettingsAppBar()
                 }
             }
         ) {
             Column {
                 Spacer(Modifier.padding(top = topPadding).align(Alignment.CenterHorizontally))
-                val currentNavigationState = navigationState
                 when (currentNavigationState) {
                     is NavigationState.TablePage -> TablePage(
-                        currentNavigationState.yearMonth,
-                        daysCoffeesStore,
-                        navigationStore
+                        yearMonth = currentNavigationState.yearMonth,
+                        daysCoffeesStore = daysCoffeesStore,
+                        navigationStore = navigationStore
                     )
                     is NavigationState.CoffeeListPage -> CoffeeListPage(
-                        daysCoffeesStore,
-                        currentNavigationState
+                        daysCoffeesStore = daysCoffeesStore,
+                        navigationState = currentNavigationState
                     )
+                    is NavigationState.SettingsPage -> SettingsPage(
+                        themeStore = themeStore,
+                    )
+                }
+                BottomNavigation {
+                    BottomNavigationItem(selected = currentNavigationState is NavigationState.TablePage, onClick = {
+                        navigationStore.newIntent(
+                            NavigationIntent.ReturnToTablePage
+                        )
+                    }, label = { Text(Strings.calendar) }, icon = {
+                        Icon(
+                            imageVector = Icons.Default.Create,
+                            contentDescription = "",
+                        )
+                    })
+                    BottomNavigationItem(selected = currentNavigationState is NavigationState.SettingsPage, onClick = {
+                        navigationStore.newIntent(
+                            NavigationIntent.ToSettingsPage
+                        )
+                    }, label = { Text(Strings.settings) }, icon = {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "",
+                        )
+                    })
                 }
             }
         }
@@ -65,4 +112,10 @@ fun PagesContent(
 @Composable
 fun DefaultPreview() {
     PagesContent(navigationStore = NavigationStore(), daysCoffeesStore = DaysCoffeesStore())
+}
+
+@Composable
+private fun themeState(): ThemeState {
+    val themeState: ThemeState by themeStore.state.collectAsState()
+    return themeState
 }

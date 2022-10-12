@@ -5,6 +5,7 @@ jetbrainsCompose = "1.2.0" # https://github.com/JetBrains/compose-jb
 sqldelight = "1.5.4" # https://github.com/cashapp/sqldelight/releases
 coroutines = "1.6.4" # https://github.com/Kotlin/kotlinx.coroutines
 detekt = "1.21.0" # https://github.com/detekt/detekt
+datastore = "1.1.0-dev01" # https://androidx.tech/artifacts/datastore/datastore-core-okio-iosarm64/
 
 
 coreKtx = "1.9.0" # https://developer.android.com/jetpack/androidx/releases/core
@@ -35,6 +36,9 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 
 kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0" # https://github.com/Kotlin/kotlinx-datetime
+
+datastore-preferencesCore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
+datastore-coreOkio = { module = "androidx.datastore:datastore-core-okio", version.ref = "datastore" }
 
 
 material = { module = "com.google.android.material:material", version.ref = "material" }
