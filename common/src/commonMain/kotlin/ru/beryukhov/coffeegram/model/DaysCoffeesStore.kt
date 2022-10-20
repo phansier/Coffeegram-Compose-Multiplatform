@@ -5,11 +5,15 @@ import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.data.DayCoffee
 import ru.beryukhov.coffeegram.repository.CoffeeStorage
 import ru.beryukhov.coffeegram.store_lib.PersistentStore
+import ru.beryukhov.coffeegram.store_lib.Store
 
-class DaysCoffeesStore : PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
-    initialState = DaysCoffeesState(),
-    storage = CoffeeStorage()
-) {
+interface DaysCoffeesStore : Store<DaysCoffeesIntent, DaysCoffeesState>
+
+internal class DaysCoffeesStoreImpl(coffeeStorage: CoffeeStorage) : DaysCoffeesStore,
+    PersistentStore<DaysCoffeesIntent, DaysCoffeesState>(
+        initialState = DaysCoffeesState(),
+        storage = coffeeStorage
+    ) {
 
     override fun handleIntent(intent: DaysCoffeesIntent): DaysCoffeesState {
         return when (intent) {

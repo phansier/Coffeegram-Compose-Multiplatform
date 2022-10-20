@@ -23,7 +23,6 @@ import ru.beryukhov.coffeegram.model.DaysCoffeesStore
 import ru.beryukhov.coffeegram.model.NavigationIntent
 import ru.beryukhov.coffeegram.model.NavigationState
 import ru.beryukhov.coffeegram.model.NavigationStore
-import ru.beryukhov.coffeegram.model.nowLD
 import ru.beryukhov.coffeegram.view.CoffeeTypeItem
 
 @Composable
@@ -77,14 +76,4 @@ internal fun Map<CoffeeType, Int>.withEmpty(): List<Pair<CoffeeType, Int>> {
         emptyList.filter { it.ct == entry.key }.forEach { it.count = entry.value }
     }
     return emptyList.map { it.ct to it.count }
-}
-
-// @Preview
-@Composable
-fun Preview() {
-    CoffeeList(
-        nowLD(),
-        DaysCoffeesStore(),
-        modifier = Modifier
-    )
 }

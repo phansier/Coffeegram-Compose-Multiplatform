@@ -31,24 +31,20 @@ import ru.beryukhov.coffeegram.pages.SettingsAppBar
 import ru.beryukhov.coffeegram.pages.SettingsPage
 import ru.beryukhov.coffeegram.pages.TableAppBar
 import ru.beryukhov.coffeegram.pages.TablePage
-import ru.beryukhov.coffeegram.repository.ThemeDataStorePrefStorage
-import ru.beryukhov.coffeegram.repository.createDataStore
-
-val datastore by lazy { createDataStore() }
-
-val themeStore by lazy { ThemeStore(ThemeDataStorePrefStorage(datastore)) }
 
 @Composable
 fun PagesContent(
     modifier: Modifier = Modifier,
     topPadding: Dp = 0.dp,
     navigationStore: NavigationStore,
-    daysCoffeesStore: DaysCoffeesStore
+    daysCoffeesStore: DaysCoffeesStore,
+    themeStore: ThemeStore
 ) {
+
     val navigationState: NavigationState by navigationStore.state.collectAsState()
     val currentNavigationState = navigationState
     CoffeegramTheme(
-        themeState = themeState()
+        themeState = themeState(themeStore)
     ) {
         Scaffold(
             modifier = modifier,
@@ -108,14 +104,23 @@ fun PagesContent(
     }
 }
 
-// @Preview(showBackground = true)
+data class Dependencies(
+    val navigationStore: NavigationStore,
+    val daysCoffeesStore: DaysCoffeesStore,
+    val themeStore: ThemeStore,
+)
+
 @Composable
-fun DefaultPreview() {
-    PagesContent(navigationStore = NavigationStore(), daysCoffeesStore = DaysCoffeesStore())
+fun DefaultPreview(dependencies: Dependencies) {
+    PagesContent(
+        navigationStore = dependencies.navigationStore,
+        daysCoffeesStore = dependencies.daysCoffeesStore,
+        themeStore = dependencies.themeStore
+    )
 }
 
 @Composable
-private fun themeState(): ThemeState {
+private fun themeState(themeStore: ThemeStore): ThemeState {
     val themeState: ThemeState by themeStore.state.collectAsState()
     return themeState
 }

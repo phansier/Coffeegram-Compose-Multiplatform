@@ -1,6 +1,5 @@
 package ru.beryukhov.coffeegram.view
 
-// import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,11 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.LocalDate
-import ru.beryukhov.coffeegram.data.Cappuccino
 import ru.beryukhov.coffeegram.data.CoffeeType
 import ru.beryukhov.coffeegram.model.DaysCoffeesIntent
 import ru.beryukhov.coffeegram.model.DaysCoffeesStore
-import ru.beryukhov.coffeegram.model.nowLD
 
 @Composable
 fun CoffeeTypeItem(
@@ -74,15 +71,4 @@ fun CoffeeTypeItem(
             }
         }
     }
-}
-
-// @Preview
-@Composable
-fun preview() {
-    CoffeeTypeItem(
-        localDate = nowLD(),
-        coffeeType = Cappuccino,
-        count = 5,
-        daysCoffeesStore = DaysCoffeesStore()
-    )
 }

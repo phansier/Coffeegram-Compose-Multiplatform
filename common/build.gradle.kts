@@ -16,7 +16,7 @@ kotlin {
 
     iosX64("uikitX64") {
         binaries {
-            executable() {
+            executable {
                 entryPoint = "main"
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal",
@@ -40,12 +40,15 @@ kotlin {
 
                 api(libs.datastore.preferencesCore)
                 api(libs.datastore.coreOkio)
+
+                api(libs.koin.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(libs.koin.test)
             }
         }
         val androidMain by getting {
