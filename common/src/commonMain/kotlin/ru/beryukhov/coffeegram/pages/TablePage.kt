@@ -2,6 +2,7 @@ package ru.beryukhov.coffeegram.pages
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
@@ -68,14 +69,15 @@ fun TableAppBar(
 }
 
 @Composable
-fun TablePage(
+fun ColumnScope.TablePage(
     yearMonth: YearMonth,
     daysCoffeesStore: DaysCoffeesStore,
-    navigationStore: NavigationStore
+    navigationStore: NavigationStore,
+    modifier: Modifier = Modifier,
 ) {
     val coffeesState by daysCoffeesStore.state.collectAsState()
 
-    Column(horizontalAlignment = Alignment.End) {
+    Column(horizontalAlignment = Alignment.End, modifier = modifier.weight(1f)) {
         MonthTable(
             yearMonth,
             coffeesState.coffees.filter { entry: Map.Entry<LocalDate, DayCoffee> ->

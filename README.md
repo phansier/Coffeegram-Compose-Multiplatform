@@ -10,6 +10,7 @@
 Android + Desktop + iOS (!!!) multiplatform app using [Jetbrains Compose](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
 
 <img src="images/ios.png" alt="drawing" width="300"/>
+<img src="images/ios_dark.png" alt="drawing" width="300"/>
 
 ![](images/desktop.png)
 

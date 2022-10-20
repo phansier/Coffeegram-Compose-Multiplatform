@@ -34,8 +34,12 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+
                 implementation(projects.repository)
                 implementation(libs.kotlinx.datetime)
+
+                api(libs.datastore.preferencesCore)
+                api(libs.datastore.coreOkio)
             }
         }
         val commonTest by getting {
