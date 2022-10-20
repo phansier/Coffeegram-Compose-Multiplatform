@@ -4,6 +4,7 @@ import kotlinx.cinterop.autoreleasepool
 import kotlinx.cinterop.cstr
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.toCValues
+import org.koin.core.context.startKoin
 import platform.Foundation.NSStringFromClass
 import platform.UIKit.UIApplication
 import platform.UIKit.UIApplicationDelegateProtocol
@@ -14,6 +15,7 @@ import platform.UIKit.UIResponderMeta
 import platform.UIKit.UIScreen
 import platform.UIKit.UIWindow
 import ru.beryukhov.coffeegram.DefaultPreview
+import ru.beryukhov.coffeegram.appModule
 
 fun main() {
     val args = emptyArray<String>()
@@ -29,6 +31,8 @@ fun main() {
 class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     private var _window: UIWindow? = null
 
+    private val koinApp = initKoin().koin
+
     @ObjCObjectBase.OverrideInit
     constructor() : super()
 
@@ -40,7 +44,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     override fun application(application: UIApplication, didFinishLaunchingWithOptions: Map<Any?, *>?): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds)
         window!!.rootViewController = Application("Coffeegram") {
-            DefaultPreview()
+            DefaultPreview(koinApp.get())
         }
         window!!.makeKeyAndVisible()
         return true
@@ -48,3 +52,8 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
 
     companion object : UIResponderMeta(), UIApplicationDelegateProtocolMeta
 }
+
+private fun initKoin() =
+    startKoin {
+        modules(appModule())
+    }

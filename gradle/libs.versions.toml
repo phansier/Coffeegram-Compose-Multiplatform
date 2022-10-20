@@ -6,6 +6,7 @@ sqldelight = "1.5.4" # https://github.com/cashapp/sqldelight/releases
 coroutines = "1.6.4" # https://github.com/Kotlin/kotlinx.coroutines
 detekt = "1.21.0" # https://github.com/detekt/detekt
 datastore = "1.1.0-dev01" # https://androidx.tech/artifacts/datastore/datastore-core-okio-iosarm64/
+koin = "3.2.2" # https://mvnrepository.com/artifact/io.insert-koin/koin-core
 
 
 coreKtx = "1.9.0" # https://developer.android.com/jetpack/androidx/releases/core
@@ -54,3 +55,7 @@ sqldelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extens
 sqldelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
 sqldelight-sqliteDriver = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }

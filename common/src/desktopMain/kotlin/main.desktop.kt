@@ -5,7 +5,16 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
+import org.koin.core.context.startKoin
 import ru.beryukhov.coffeegram.DefaultPreview
+import ru.beryukhov.coffeegram.appModule
+
+private val koinApp = initKoin().koin
+
+private fun initKoin() =
+    startKoin {
+        modules(appModule())
+    }
 
 fun main() = singleWindowApplication(
     title = "CoffeeGram",
@@ -22,7 +31,7 @@ fun main() = singleWindowApplication(
                 hoverColor = MaterialTheme.colors.onSurface.copy(alpha = 0.50f)
             )
         ) {
-            DefaultPreview()
+            DefaultPreview(koinApp.get())
         }
     }
 }
