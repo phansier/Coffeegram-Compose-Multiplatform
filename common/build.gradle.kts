@@ -35,6 +35,8 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
 
+                implementation("org.jetbrains.compose.components:components-resources:1.3.0-beta04-dev879")
+
                 implementation(projects.repository)
                 implementation(libs.kotlinx.datetime)
 
@@ -82,6 +84,7 @@ kotlin {
     }
 }
 
+// todo use project structure as in samples https://github.com/JetBrains/compose-jb/tree/master/experimental/examples
 compose.experimental {
     // web.application {}
     uikit.application {
@@ -127,7 +130,7 @@ android {
     sourceSets {
         named("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            res.srcDirs("src/androidMain/res")
+            res.srcDirs("src/androidMain/res", "src/commonMain/resources")
         }
     }
 }
