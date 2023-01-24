@@ -58,7 +58,7 @@ kotlin {
                 api(libs.androidx.coreKtx)
             }
         }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation(libs.junit)
