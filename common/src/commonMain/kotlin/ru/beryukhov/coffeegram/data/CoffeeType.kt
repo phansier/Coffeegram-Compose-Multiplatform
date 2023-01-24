@@ -23,16 +23,15 @@ object CommonCoffee : CoffeeType(Res.string.common)
 object Res {
     object drawable {
 
-        val cappucino = "drawable/cappucino.xml"
-        val latte = "drawable/latte.xml"
-        val coffee = "drawable/coffee.xml"
+        const val cappucino = "drawable/cappucino.xml"
+        const val latte = "drawable/latte.xml"
+        const val coffee = "drawable/coffee.xml"
     }
 
     object string {
-        val cappucino = "Cappuccino"
-        val latte = "Latte"
-        val americano = "Americano"
-        val common = "CommonCoffee"
-
+        const val cappucino = "Cappuccino"
+        const val latte = "Latte"
+        const val americano = "Americano"
+        const val common = "CommonCoffee"
     }
 }

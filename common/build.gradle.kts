@@ -84,8 +84,7 @@ kotlin {
     }
 }
 
-//todo use project structure as in samples https://github.com/JetBrains/compose-jb/tree/master/experimental/examples
-
+// todo use project structure as in samples https://github.com/JetBrains/compose-jb/tree/master/experimental/examples
 compose.experimental {
     // web.application {}
     uikit.application {
