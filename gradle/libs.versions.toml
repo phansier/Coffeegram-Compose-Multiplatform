@@ -17,7 +17,7 @@ activity = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/act
 
 
 compileSdk = "33"
-minSdk = "21"
+minSdk = "24"
 targetSdk = "31"
 
 [libraries]
