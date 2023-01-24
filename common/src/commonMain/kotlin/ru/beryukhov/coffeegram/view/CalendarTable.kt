@@ -46,7 +46,9 @@ fun DayCell(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = if (dayItem.dayOfMonth == null) modifier else {
+        modifier = if (dayItem.dayOfMonth == null) {
+            modifier
+        } else {
             modifier.clickable(onClick = {
                 navigationStore.newIntent(
                     NavigationIntent.OpenCoffeeListPage(

@@ -80,7 +80,7 @@ complexity:
         threshold: 10
         includeStaticDeclarations: false
         includePrivateDeclarations: false
-    ComplexMethod:
+    CyclomaticComplexMethod:
         active: true
         threshold: 15
         ignoreSingleWhenExpression: false
@@ -284,7 +284,6 @@ formatting:
     Indentation:
         active: false
         indentSize: 4
-        continuationIndentSize: 4
     # DUPLICATE of style:MaxLineLength
     MaximumLineLength:
         active: false
@@ -332,8 +331,6 @@ formatting:
         active: false
     ParameterListWrapping:
         active: true
-        indentSize: 4
-
     # https://ktlint.github.io/#rule-spacing
     SpacingAroundColon:
         active: true
@@ -470,8 +467,6 @@ potential-bugs:
     active: false
     Deprecation:
         active: false
-    DuplicateCaseInWhenExpression:
-        active: false
     EqualsAlwaysReturnsTrueOrFalse:
         active: false
     EqualsWithHashCodeExist:
@@ -482,7 +477,7 @@ potential-bugs:
         active: false
     IgnoredReturnValue:
         active: false
-        restrictToAnnotatedMethods: true
+        restrictToConfig: true
         returnValueAnnotations: [ '*.CheckReturnValue', '*.CheckResult' ]
     ImplicitDefaultLocale:
         active: false
@@ -502,12 +497,7 @@ potential-bugs:
         ignoreOnClassesPattern: ''
     MapGetWithNotNullAssertionOperator:
         active: false
-    MissingWhenCase:
-        active: false
-        allowElseExpression: true
     NullableToStringCall:
-        active: false
-    RedundantElseInWhen:
         active: false
     UnconditionalJumpStatementInLoop:
         active: false
@@ -539,7 +529,7 @@ style:
     # probably a good idea, but seems too strict
     DataClassContainsFunctions:
         active: false
-        conversionFunctionPrefix: 'to'
+        conversionFunctionPrefix: [ 'to' ]
     # https://detekt.github.io/detekt/style.html#dataclassshouldbeimmutable
     DataClassShouldBeImmutable:
         active: true
@@ -576,11 +566,6 @@ style:
     ForbiddenMethodCall:
         active: false
         methods: [ 'kotlin.io.println', 'kotlin.io.print' ]
-    # https://detekt.github.io/detekt/style.html#forbiddenpublicdataclass
-    # needs type resolution config https://github.com/detekt/detekt/issues/2259
-    ForbiddenPublicDataClass:
-        active: false
-        ignorePackages: [ '*.internal', '*.internal.*' ]
     # https://detekt.github.io/detekt/style.html#forbiddenvoid
     # needs type resolution config https://github.com/detekt/detekt/issues/2259
     ForbiddenVoid:
@@ -591,14 +576,8 @@ style:
     FunctionOnlyReturningConstant:
         active: false
         ignoreOverridableFunction: true
-        excludedFunctions: 'describeContents'
+        excludedFunctions: [ 'describeContents' ]
         ignoreAnnotated: [ 'dagger.Provides' ]
-    # https://detekt.github.io/detekt/style.html#librarycodemustspecifyreturntype
-    LibraryCodeMustSpecifyReturnType:
-        active: true
-    # https://detekt.github.io/detekt/style.html#libraryentitiesshouldnotbepublic
-    LibraryEntitiesShouldNotBePublic:
-        active: false
     # https://detekt.github.io/detekt/style.html#loopwithtoomanyjumpstatements
     LoopWithTooManyJumpStatements:
         active: true
@@ -671,7 +650,7 @@ style:
     ReturnCount:
         active: true
         max: 2
-        excludedFunctions: 'equals'
+        excludedFunctions: [ 'equals' ]
         excludeLabeled: false
         excludeReturnFromLambda: true
         excludeGuardClauses: false
