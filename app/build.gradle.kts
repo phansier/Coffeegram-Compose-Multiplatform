@@ -26,6 +26,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
         sourceCompatibility = JavaVersion.VERSION_11
     }
+    namespace = "ru.beryukhov.coffeegram"
 }
 
 dependencies {

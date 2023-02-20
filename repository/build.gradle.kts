@@ -82,4 +82,5 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
     }
+    namespace = "ru.beryukhov.repository"
 }

@@ -35,7 +35,7 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
 
-                implementation("org.jetbrains.compose.components:components-resources:1.3.0-beta04-dev879")
+                implementation(libs.jetbrains.compose.componentsResources)
 
                 implementation(projects.repository)
                 implementation(libs.kotlinx.datetime)
@@ -133,6 +133,7 @@ android {
             res.srcDirs("src/androidMain/res", "src/commonMain/resources")
         }
     }
+    namespace = "ru.beryukhov.compose_common"
 }
 
 dependencies {
