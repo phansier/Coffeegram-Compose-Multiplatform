@@ -1,10 +1,9 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.compose.experimental.dsl.IOSDevices
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.library")
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
+    id("com.android.library")
     id("org.jetbrains.compose")
 }
 
@@ -14,19 +13,23 @@ kotlin {
     android()
     jvm("desktop")
 
-    iosX64("uikitX64") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal",
-                    "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics",
-                    "-linker-options", "-lsqlite3"
-                )
-            }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        version = "1.0.0"
+        summary = "Some description for the Shared Module"
+        homepage = "https://github.com/phansier/Coffeegram"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "common"
+            isStatic = true
         }
+        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
+
     @Suppress("UnusedPrivateMember")
     sourceSets {
         val commonMain by getting {
@@ -60,59 +63,27 @@ kotlin {
                 api(libs.androidx.coreKtx)
             }
         }
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation(libs.junit)
-            }
-        }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
         }
 
-        val nativeMain by creating {
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+
+        val iosMain by creating {
             dependsOn(commonMain)
-        }
-        val uikitMain by creating {
-            dependsOn(nativeMain)
-        }
-        val uikitX64Main by getting {
-            dependsOn(uikitMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
     }
-}
-
-// todo use project structure as in samples https://github.com/JetBrains/compose-jb/tree/master/experimental/examples
-compose.experimental {
-    // web.application {}
-    uikit.application {
-        bundleIdPrefix = "ru.beryukhov"
-        projectName = "Coffeegram"
-        deployConfigurations {
-            simulator("IPhone8") {
-                // Usage: ./gradlew iosDeployIPhone8Debug
-                device = IOSDevices.IPHONE_8
-            }
-            simulator("IPad") {
-                // Usage: ./gradlew iosDeployIPadDebug
-                device = IOSDevices.IPAD_MINI_6th_Gen
-            }
-            // connectedDevice("Device") {
-                // First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
-                // teamId="***"
-                // Usage: ./gradlew iosDeployDeviceRelease
-            // }
-        }
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
 }
 
 android {
+    namespace = "ru.beryukhov.compose_common"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -133,7 +104,10 @@ android {
             res.srcDirs("src/androidMain/res", "src/commonMain/resources")
         }
     }
-    namespace = "ru.beryukhov.compose_common"
+
+    kotlin {
+        jvmToolchain(11)
+    }
 }
 
 dependencies {

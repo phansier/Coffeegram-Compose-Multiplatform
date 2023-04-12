@@ -1,4 +1,4 @@
-# ![](images/icon.png) Coffeegram Multiplatform
+# ![](images/icon.png) Coffeegram on Compose Multiplatform
 
 [![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-1.4.0-yellow)](https://github.com/JetBrains/compose-jb)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.8.20-blue.svg)](https://kotlinlang.org)
@@ -7,19 +7,17 @@
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-130-blue)](https://jetc.dev/issues/130.html)
 
 
-Android + Desktop + iOS (!!!) multiplatform app using [Jetbrains Compose](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
+Android + Desktop + iOS (!!!) multiplatform app using [Compose Multiplatform](https://github.com/JetBrains/compose-jb) together with StateFlow and MVI
 
 <img src="images/ios.png" alt="drawing" width="300"/>
 <img src="images/ios_dark.png" alt="drawing" width="300"/>
 
 ![](images/desktop.png)
 
-iOS currently not works with image assets - therefore icons were replaced with color boxes
-This project evolved from [Coffeegram Android](https://github.com/phansier/Coffeegram) (with Andorid Jetpack Compose) repository.
+This project evolved from [Coffeegram Android](https://github.com/phansier/Coffeegram) (with Android Jetpack Compose) repository.
 
 ## Run on Desktop jvm
 `./gradlew run`
 
-## Run on iOS simulator
-`./gradlew iosDeployIPhone8Debug --no-configuration-cache`
-`./gradlew iosDeployIPadDebug --no-configuration-cache`
+## Run on iOS
+[Using KMM plugin](https://github.com/JetBrains/compose-multiplatform-ios-android-template#on-ios)
