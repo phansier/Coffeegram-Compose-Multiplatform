@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
@@ -23,16 +22,6 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    cocoapods {
-        summary = "Repository for Coffegram"
-        homepage = "https://github.com/phansier/Coffeegram"
-        ios.deploymentTarget = "14.1"
-         podfile = project.file("../iosApp/Podfile")
-        framework {
-            baseName = "repository"
-            isStatic = true
-        }
-    }
     @Suppress("UnusedPrivateMember")
     sourceSets {
         val commonMain by getting {
