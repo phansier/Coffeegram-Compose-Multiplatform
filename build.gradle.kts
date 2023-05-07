@@ -4,13 +4,13 @@ plugins {
 
 buildscript {
     repositories {
+        gradlePluginPortal()
         mavenCentral()
         google()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     dependencies {
         classpath(libs.androidGradle)
-
         classpath(libs.composeGradle)
         classpath(libs.kotlinGradle)
         classpath(libs.sqldelightGradle)

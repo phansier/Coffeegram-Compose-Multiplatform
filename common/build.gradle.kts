@@ -5,6 +5,9 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
+
+    id("co.touchlab.faktory.kmmbridge") version "0.3.7"
+    `maven-publish`
 }
 
 fun composeDependency(groupWithArtifact: String) = "$groupWithArtifact:${libs.versions.jetbrainsCompose}"
@@ -139,4 +142,12 @@ compose.desktop {
             }
         }
     }
+}
+
+kmmbridge {
+    mavenPublishArtifacts()
+    gitTagVersions()
+    spm()
+    cocoapods("git@github.com:phansier/PodSpecs.git")
+    addGithubPackagesRepository()
 }
