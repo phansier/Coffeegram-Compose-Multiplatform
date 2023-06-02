@@ -1,19 +1,19 @@
 [versions]
 # https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility
 kotlin = "1.8.20" # https://kotlinlang.org/docs/releases.html#release-details
-agp = "7.4.2" # https://developer.android.com/studio/releases/gradle-plugin
+agp = "8.0.2" # https://developer.android.com/studio/releases/gradle-plugin
 jetbrainsCompose = "1.4.0" # https://github.com/JetBrains/compose-multiplatform
 sqldelight = "1.5.5" # https://github.com/cashapp/sqldelight/releases
-coroutines = "1.6.4" # https://github.com/Kotlin/kotlinx.coroutines
+coroutines = "1.7.1" # https://github.com/Kotlin/kotlinx.coroutines
 detekt = "1.22.0" # https://github.com/detekt/detekt
 datastore = "1.1.0-alpha04" # https://androidx.tech/artifacts/datastore/datastore-core-okio-iosarm64/
-koin = "3.4.0" # https://mvnrepository.com/artifact/io.insert-koin/koin-core
+koin = "3.4.1" # https://mvnrepository.com/artifact/io.insert-koin/koin-core
 
 
-coreKtx = "1.10.0" # https://developer.android.com/jetpack/androidx/releases/core
+coreKtx = "1.10.1" # https://developer.android.com/jetpack/androidx/releases/core
 appcompat = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
-material = "1.8.0" # https://github.com/material-components/material-components-android
-activity = "1.7.0" # https://developer.android.com/jetpack/androidx/releases/activity
+material = "1.9.0" # https://github.com/material-components/material-components-android
+activity = "1.7.2" # https://developer.android.com/jetpack/androidx/releases/activity
 
 
 compileSdk = "33"
