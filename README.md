@@ -2,7 +2,7 @@
 
 [![Compose Version](https://img.shields.io/badge/JetBrains%20Compose-1.4.0-yellow)](https://github.com/JetBrains/compose-jb)
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.8.20-blue.svg)](https://kotlinlang.org)
-[![Android CI](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml/badge.svg)](https://github.com/phansier/Coffeegram-Desktop/actions/workflows/android.yml)
+[![CI checks](https://github.com/phansier/Coffeegram-Compose-Multiplatform/actions/workflows/verify.yml/badge.svg)](https://github.com/phansier/Coffeegram-Compose-Multiplatform/actions/workflows/verify.yml)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-77-blue)](https://jetc.dev/issues/077.html)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-130-blue)](https://jetc.dev/issues/130.html)
 
