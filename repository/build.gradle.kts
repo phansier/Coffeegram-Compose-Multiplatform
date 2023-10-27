@@ -1,14 +1,16 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
 }
 
 sqldelight {
-    database("CoffeeDb") {
-        packageName = "ru.beryukhov.repository"
+    databases {
+        create("CoffeeDb") {
+            packageName.set("ru.beryukhov.repository")
+        }
     }
-    linkSqlite = true
+    // linkSqlite = true
 }
 
 version = "1.0"

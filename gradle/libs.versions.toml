@@ -1,19 +1,19 @@
 [versions]
 # https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility
-kotlin = "1.9.0" # https://kotlinlang.org/docs/releases.html#release-details
-agp = "8.1.0" # https://developer.android.com/studio/releases/gradle-plugin
-jetbrainsCompose = "1.5.0-beta01" # https://github.com/JetBrains/compose-multiplatform
-sqldelight = "1.5.5" # https://github.com/cashapp/sqldelight/releases
+kotlin = "1.9.10" # https://kotlinlang.org/docs/releases.html#release-details
+agp = "8.1.2" # https://developer.android.com/studio/releases/gradle-plugin
+jetbrainsCompose = "1.5.3" # https://github.com/JetBrains/compose-multiplatform
+sqldelight = "2.0.0" # https://github.com/cashapp/sqldelight/releases
 coroutines = "1.7.3" # https://github.com/Kotlin/kotlinx.coroutines
 detekt = "1.23.1" # https://github.com/detekt/detekt
-datastore = "1.1.0-alpha04" # https://androidx.tech/artifacts/datastore/datastore-core-okio-iosarm64/
-koin = "3.4.3" # https://mvnrepository.com/artifact/io.insert-koin/koin-core
+datastore = "1.1.0-alpha05" # https://androidx.tech/artifacts/datastore/datastore-core-okio-iosarm64/
+koin = "3.5.0" # https://mvnrepository.com/artifact/io.insert-koin/koin-core
 
 
-coreKtx = "1.10.1" # https://developer.android.com/jetpack/androidx/releases/core
+coreKtx = "1.12.0" # https://developer.android.com/jetpack/androidx/releases/core
 appcompat = "1.6.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
-material = "1.9.0" # https://github.com/material-components/material-components-android
-activity = "1.7.2" # https://developer.android.com/jetpack/androidx/releases/activity
+material = "1.10.0" # https://github.com/material-components/material-components-android
+activity = "1.8.0" # https://developer.android.com/jetpack/androidx/releases/activity
 
 
 compileSdk = "34"
@@ -24,7 +24,7 @@ targetSdk = "31"
 androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 composeGradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrainsCompose" }
 kotlinGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-sqldelightGradle = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+sqldelightGradle = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 
 detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
@@ -52,11 +52,11 @@ junit = "junit:junit:4.13.2"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
-sqldelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
-sqldelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
-sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
-sqldelight-sqliteDriver = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-coroutinesExt = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-androidDriver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-nativeDriver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+sqldelight-sqliteDriver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

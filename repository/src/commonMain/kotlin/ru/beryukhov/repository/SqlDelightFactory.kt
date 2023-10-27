@@ -2,7 +2,7 @@
 
 package ru.beryukhov.repository
 
-import com.squareup.sqldelight.db.SqlDriver
+import app.cash.sqldelight.db.SqlDriver
 
 internal expect class DriverFactory() {
     fun createDriver(): SqlDriver
