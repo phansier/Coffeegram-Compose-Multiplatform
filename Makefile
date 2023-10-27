@@ -16,9 +16,3 @@ localCheck: detekt buildAndroid
 runDesktop:
 	./gradlew run
 
-## Run on iOS simulator
-runIphone:
-	./gradlew iosDeployIPhone8Debug --no-configuration-cache
-
-runIpad:
-	./gradlew iosDeployIPadDebug --no-configuration-cache
