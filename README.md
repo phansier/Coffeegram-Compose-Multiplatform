@@ -1,7 +1,7 @@
 # ![](images/icon.png) Coffeegram on Compose Multiplatform
 
-[![Compose Version](https://img.shields.io/badge/Compose%20Multiplatform-1.5.3-yellow)](https://github.com/JetBrains/compose-multiplatform)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.9.10-blue.svg)](https://kotlinlang.org)
+[![Compose Version](https://img.shields.io/badge/Compose%20Multiplatform-1.5.10-yellow)](https://github.com/JetBrains/compose-multiplatform)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg)](https://kotlinlang.org)
 [![CI checks](https://github.com/phansier/Coffeegram-Compose-Multiplatform/actions/workflows/verify.yml/badge.svg)](https://github.com/phansier/Coffeegram-Compose-Multiplatform/actions/workflows/verify.yml)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-77-blue)](https://jetc.dev/issues/077.html)
 [![Jetc.dev](https://img.shields.io/badge/jetc.dev-130-blue)](https://jetc.dev/issues/130.html)
